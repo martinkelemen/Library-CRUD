@@ -21,4 +21,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyLibrary.Logic\MyLibrary.Logic.csproj" />
+    <ProjectReference Include="..\MyLibrary.Repository\MyLibrary.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
