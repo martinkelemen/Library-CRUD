@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="BookRental.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace MyLibrary.Data
 {
-    class BookRental
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text;
+
+    public class BookRental
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
