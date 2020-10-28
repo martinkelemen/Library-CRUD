@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyLibrary.Data\MyLibrary.Data.csproj" />
+    <ProjectReference Include="..\MyLibrary.Repository\MyLibrary.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
