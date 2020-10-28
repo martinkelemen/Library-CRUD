@@ -9,7 +9,7 @@ namespace MyLibrary.Data
     using System.Text;
     using Microsoft.EntityFrameworkCore;
 
-    class LibraryContext : DbContext
+    public class LibraryContext : DbContext
     {
         public LibraryContext()
         {
@@ -61,18 +61,18 @@ namespace MyLibrary.Data
             Book b6 = new Book() { ISBN = "1-4748-7967-4", Title = "I, Robot", AuthorName = "Isaac Asimov", Category = "fixup novel", Language = "English", PageNumber = 253, Year = 1950, Publisher = "Gnome Press" };
             Book b7 = new Book() { ISBN = "1-5788-2367-4", Title = "Aranymenes", AuthorName = "Janos Osi", Category = "novel", Language = "Hungarian", PageNumber = 265, Year = 2017, Publisher = "Rezbong Kiado" };
 
-            BookRental br0 = new BookRental() { RentalDate = new DateTime(2020, 10, 01), Days = 7 };
-            BookRental br1 = new BookRental() { RentalDate = new DateTime(2020, 10, 01), Days = 14 };
-            BookRental br2 = new BookRental() { RentalDate = new DateTime(2020, 10, 02), Days = 10 };
-            BookRental br3 = new BookRental() { RentalDate = new DateTime(2020, 10, 02), Days = 15 };
-            BookRental br4 = new BookRental() { RentalDate = new DateTime(2020, 10, 02), Days = 5 };
-            BookRental br5 = new BookRental() { RentalDate = new DateTime(2020, 10, 03), Days = 6 };
-            BookRental br6 = new BookRental() { RentalDate = new DateTime(2020, 10, 03), Days = 7 };
-            BookRental br7 = new BookRental() { RentalDate = new DateTime(2020, 10, 04), Days = 12 };
-            BookRental br8 = new BookRental() { RentalDate = new DateTime(2020, 10, 05), Days = 14 };
-            BookRental br9 = new BookRental() { RentalDate = new DateTime(2020, 10, 05), Days = 15 };
-            BookRental br10 = new BookRental() { RentalDate = new DateTime(2020, 10, 06), Days = 20 };
-            BookRental br11 = new BookRental() { RentalDate = new DateTime(2020, 10, 07), Days = 30 };
+            BookRental br0 = new BookRental() { RentalId = 1, RentalDate = new DateTime(2020, 10, 01), Days = 7 };
+            BookRental br1 = new BookRental() { RentalId = 2, RentalDate = new DateTime(2020, 10, 01), Days = 14 };
+            BookRental br2 = new BookRental() { RentalId = 3, RentalDate = new DateTime(2020, 10, 02), Days = 10 };
+            BookRental br3 = new BookRental() { RentalId = 4, RentalDate = new DateTime(2020, 10, 02), Days = 15 };
+            BookRental br4 = new BookRental() { RentalId = 5, RentalDate = new DateTime(2020, 10, 02), Days = 5 };
+            BookRental br5 = new BookRental() { RentalId = 6, RentalDate = new DateTime(2020, 10, 03), Days = 6 };
+            BookRental br6 = new BookRental() { RentalId = 7, RentalDate = new DateTime(2020, 10, 03), Days = 7 };
+            BookRental br7 = new BookRental() { RentalId = 8, RentalDate = new DateTime(2020, 10, 04), Days = 12 };
+            BookRental br8 = new BookRental() { RentalId = 9, RentalDate = new DateTime(2020, 10, 05), Days = 14 };
+            BookRental br9 = new BookRental() { RentalId = 10, RentalDate = new DateTime(2020, 10, 05), Days = 15 };
+            BookRental br10 = new BookRental() { RentalId = 11, RentalDate = new DateTime(2020, 10, 06), Days = 20 };
+            BookRental br11 = new BookRental() { RentalId = 12, RentalDate = new DateTime(2020, 10, 07), Days = 30 };
 
             br0.ISBN = b0.ISBN;
             br0.Renter_Id = r0.RenterId;
