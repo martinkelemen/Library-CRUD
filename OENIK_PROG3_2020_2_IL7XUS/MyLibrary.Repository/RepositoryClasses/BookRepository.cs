@@ -20,21 +20,21 @@ namespace MyLibrary.Repository
 
         public void ChangeLanguage(string id, string newLanguage)
         {
-            var book = GetOne(id);
+            var book = this.GetOne(id);
             book.Language = newLanguage;
             this.ctx.SaveChanges();
         }
 
         public void ChangePublisher(string id, string newPublisher)
         {
-            var book = GetOne(id);
+            var book = this.GetOne(id);
             book.Publisher = newPublisher;
             this.ctx.SaveChanges();
         }
 
         public void ChangeYear(string id, int newYear)
         {
-            var book = GetOne(id);
+            var book = this.GetOne(id);
             book.Year = newYear;
             this.ctx.SaveChanges();
         }

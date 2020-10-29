@@ -1,4 +1,4 @@
-﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+﻿// <copyright file="MainProgram.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -13,6 +13,22 @@ namespace MyLibrary.Program
 
     public static class MainProgram
     {
+        public static void Main()
+        {
+            Factory factory = new Factory();
+            Console.WindowWidth = 150;
+            Console.WindowHeight = 25;
+
+            var menu = new ConsoleMenu()
+                .Add(">>BOOKS", () => BookMenu(factory.LibraryLogic))
+                .Add(">>WORKERS", () => WorkerMenu(factory.PersonLogic))
+                .Add(">>RENTERS", () => RenterMenu(factory.PersonLogic))
+                .Add(">>BOOK RENTALS", () => RentalMenu(factory.LibraryLogic))
+                .Add(">> EXIT", ConsoleMenu.Close);
+
+            menu.Show();
+        }
+
         private static void BookMenu(ILibraryLogic libraryLogic)
         {
             var menu = new ConsoleMenu()
@@ -175,23 +191,6 @@ namespace MyLibrary.Program
             Console.WriteLine("Not implemented yet." + ' ');
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
-        }
-
-        public static void Main()
-        {
-            Factory factory = new Factory();
-            Console.WindowWidth = 150;
-            Console.WindowHeight = 25;
-
-            var menu = new ConsoleMenu()
-                .Add(">>BOOKS", () => BookMenu(factory.LibraryLogic))
-                .Add(">>WORKERS", () => WorkerMenu(factory.PersonLogic))
-                .Add(">>RENTERS", () => RenterMenu(factory.PersonLogic))
-                .Add(">>BOOK RENTALS", () => RentalMenu(factory.LibraryLogic))
-                .Add(">> EXIT", ConsoleMenu.Close);
-
-            menu.Show();
-
         }
     }
 }
