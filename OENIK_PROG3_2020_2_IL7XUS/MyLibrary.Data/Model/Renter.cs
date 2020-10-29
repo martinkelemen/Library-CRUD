@@ -35,5 +35,15 @@ namespace MyLibrary.Data
 
         [NotMapped]
         public virtual ICollection<BookRental> Rentals { get; }
+
+        public string ColumnInfo()
+        {
+            return "Id - Name - Address - Email - Type of the membership - Join date";
+        }
+
+        public override string ToString()
+        {
+            return $"{this.RenterId} - {this.Name} - {this.Address} - {this.Email} - {this.MembershipType} - {this.JoinDate.ToShortDateString()}";
+        }
     }
 }

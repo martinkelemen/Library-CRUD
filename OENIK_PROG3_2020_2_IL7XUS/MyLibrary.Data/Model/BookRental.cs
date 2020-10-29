@@ -39,5 +39,15 @@ namespace MyLibrary.Data
 
         [NotMapped]
         public virtual Book Book { get; set; }
+
+        public string ColumnInfo()
+        {
+            return "Rental date - Number of days";
+        }
+
+        public override string ToString()
+        {
+            return $"{this.RentalDate.ToShortDateString()} - {this.Days}";
+        }
     }
 }

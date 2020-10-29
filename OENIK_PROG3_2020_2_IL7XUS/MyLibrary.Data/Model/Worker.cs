@@ -41,5 +41,15 @@ namespace MyLibrary.Data
 
         [NotMapped]
         public virtual ICollection<BookRental> Rentals { get; }
+
+        public string ColumnInfo()
+        {
+            return "Id - Name - Birth date - Gender - Address - Email - Salary - Hire date";
+        }
+
+        public override string ToString()
+        {
+            return $"{this.WorkerId} - {this.Name} - {this.BirthDate.ToShortDateString()} - {this.Gender} - {this.Address} - {this.Email} - {this.Salary} - {this.HireDate.ToShortDateString()}";
+        }
     }
 }

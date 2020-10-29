@@ -39,5 +39,15 @@ namespace MyLibrary.Data
 
         [NotMapped]
         public virtual ICollection<BookRental> Rentals { get; }
+
+        public string ColumnInfo()
+        {
+            return "ISBN number - Title - AuthorName - Year - Language - Category - PageNumber - Publisher";
+        }
+
+        public override string ToString()
+        {
+            return $"{this.ISBN} - {this.Title} - {this.AuthorName} - {this.Year} - {this.Language} - {this.Category} - {this.PageNumber} - {this.Publisher}";
+        }
     }
 }
