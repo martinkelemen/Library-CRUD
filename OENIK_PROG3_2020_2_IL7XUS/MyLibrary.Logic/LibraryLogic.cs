@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MyLibrary.Logic
 {
-    class LibraryLogic : ILibraryLogic
+    public class LibraryLogic : ILibraryLogic
     {
         private IBookRepository bookRepository;
         private IBookRentalRepository bookRentalRepository;

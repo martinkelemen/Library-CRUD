@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MyLibrary.Logic
 {
-    class PersonLogic : IPersonLogic
+    public class PersonLogic : IPersonLogic
     {
         private IRenterRepository renterRepository;
 

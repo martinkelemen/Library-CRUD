@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyLibrary.Logic
 {
-    interface IPersonLogic
+    public interface IPersonLogic
     {
         Renter GetRenterById(int id);
 

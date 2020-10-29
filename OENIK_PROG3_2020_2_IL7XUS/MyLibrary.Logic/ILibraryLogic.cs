@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MyLibrary.Logic
 {
-    interface ILibraryLogic
+    public interface ILibraryLogic
     {
         Book GetBookById(int id);
 
