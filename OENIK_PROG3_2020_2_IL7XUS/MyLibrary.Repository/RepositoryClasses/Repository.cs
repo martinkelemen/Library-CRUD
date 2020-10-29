@@ -27,9 +27,10 @@ namespace MyLibrary.Repository
             this.ctx.Add<T>(newInstance);
         }
 
-        public void DeleteOld(T oldInstance)
+        public void DeleteOld(TK id)
         {
-            this.ctx.Remove<T>(oldInstance);
+            this.ctx.Set<T>().Remove(this.GetOne(id));
+            this.ctx.SaveChanges();
         }
 
         public IQueryable<T> GetAll()

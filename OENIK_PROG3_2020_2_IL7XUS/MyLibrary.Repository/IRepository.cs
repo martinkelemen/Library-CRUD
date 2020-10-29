@@ -15,7 +15,7 @@ namespace MyLibrary.Repository
 
         void AddNew(T newInstance);
 
-        void DeleteOld(T oldInstance);
+        void DeleteOld(TK id);
 
     }
 
