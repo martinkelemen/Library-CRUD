@@ -24,7 +24,7 @@ namespace MyLibrary.Repository
 
         public void AddNew(T newInstance)
         {
-            this.ctx.Add<T>(newInstance);
+            this.ctx.Set<T>().Add(newInstance);
         }
 
         public void DeleteOld(TK id)
