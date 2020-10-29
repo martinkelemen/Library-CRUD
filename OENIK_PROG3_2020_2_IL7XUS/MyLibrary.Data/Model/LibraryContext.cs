@@ -16,7 +16,7 @@ namespace MyLibrary.Data
             this.Database.EnsureCreated();
         }
 
-        public LibraryContext(DbContextOptions<LibraryContext> options) 
+        public LibraryContext(DbContextOptions<LibraryContext> options)
             : base (options)
         {
         }

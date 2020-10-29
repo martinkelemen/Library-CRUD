@@ -1,12 +1,16 @@
-﻿using Castle.DynamicProxy.Contributors;
-using MyLibrary.Data;
-using MyLibrary.Repository;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="ILibraryLogic.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace MyLibrary.Logic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Castle.DynamicProxy.Contributors;
+    using MyLibrary.Data;
+    using MyLibrary.Repository;
+
     public interface ILibraryLogic
     {
         Book GetBookById(int id);

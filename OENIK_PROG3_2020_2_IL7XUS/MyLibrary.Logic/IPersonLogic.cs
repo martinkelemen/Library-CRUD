@@ -1,10 +1,14 @@
-﻿using MyLibrary.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="IPersonLogic.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace MyLibrary.Logic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using MyLibrary.Data;
+
     public interface IPersonLogic
     {
         Renter GetRenterById(int id);

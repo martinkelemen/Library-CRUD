@@ -1,4 +1,8 @@
-﻿namespace MyLibrary.Program
+﻿// <copyright file="Factory.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace MyLibrary.Program
 {
     using System;
     using System.Collections.Generic;
