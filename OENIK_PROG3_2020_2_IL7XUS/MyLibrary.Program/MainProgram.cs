@@ -11,7 +11,7 @@ namespace MyLibrary.Program
     using MyLibrary.Data;
     using MyLibrary.Logic;
 
-    public class Program
+    public static class MainProgram
     {
         private static void BookMenu(ILibraryLogic libraryLogic)
         {
@@ -177,7 +177,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        public static void Main(string[] args)
+        public static void Main()
         {
             Factory factory = new Factory();
             Console.WindowWidth = 150;
