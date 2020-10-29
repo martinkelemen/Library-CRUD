@@ -4,5 +4,340 @@
         <name>MyLibrary.Repository</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Repository.BookRentalRepository">
+            <summary>
+            The book rental repository class inherited from the abstract Repository class, implements the IBookRentalRepository.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRentalRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.BookRentalRepository"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRentalRepository.ChangeDays(System.Int32,System.Int32)">
+            <summary>
+            Changes the number of days of a rental.
+            </summary>
+            <param name="id">The id of the rental.</param>
+            <param name="newDays">The new number of days of the rental.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRentalRepository.GetOne(System.Int32)">
+            <summary>
+            Returns a Book instance by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+            <returns>A Book instance.</returns>
+        </member>
+        <member name="T:MyLibrary.Repository.BookRepository">
+            <summary>
+            The book repository class inherited from the abstract Repository class, implements the IBookRepository.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.BookRepository"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRepository.ChangeLanguage(System.String,System.String)">
+            <summary>
+            Changes the language of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newLanguage">The new language of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRepository.ChangePublisher(System.String,System.String)">
+            <summary>
+            Changes the publisher of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newPublisher">The new publisher of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRepository.ChangeYear(System.String,System.Int32)">
+            <summary>
+            Changes the publishing year of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newYear">The new publishing year of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.BookRepository.GetOne(System.String)">
+            <summary>
+            Returns a Book instance by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+            <returns>A Book instance.</returns>
+        </member>
+        <member name="T:MyLibrary.Repository.RenterRepository">
+            <summary>
+            The renter repository class inherited from the abstract Repository class, implements the IRenterRepository.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.RenterRepository"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.ChangeAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newAddress">The new address of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.ChangeEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newEmail">The new email of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.ChangeMembershipType(System.Int32,System.String)">
+            <summary>
+            Changes the type of the membership by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newMembershipType">The new type of membership.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newName">The new name of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.RenterRepository.GetOne(System.Int32)">
+            <summary>
+            Returns a Renter instance by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+            <returns>A Renter instance.</returns>
+        </member>
+        <member name="T:MyLibrary.Repository.Repository`2">
+            <summary>
+            The abstract ancestor class of the repository classes.
+            </summary>
+            <typeparam name="T">Generic type T.</typeparam>
+            <typeparam name="TK">Generic type TK.</typeparam>
+        </member>
+        <member name="M:MyLibrary.Repository.Repository`2.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.Repository`2"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="P:MyLibrary.Repository.Repository`2.Ctx">
+            <summary>
+            Gets the context of the database.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.Repository`2.AddNew(`0)">
+            <summary>
+            Adds a new instance to a table.
+            </summary>
+            <param name="newInstance">The new instance.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.Repository`2.DeleteOld(`1)">
+            <summary>
+            Deletes an instance from a table by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.Repository`2.GetAll">
+            <summary>
+            Returns an IQueryable type of all the elements in a table.
+            </summary>
+            <returns>Returns IQueryable type.</returns>
+        </member>
+        <member name="M:MyLibrary.Repository.Repository`2.GetOne(`1)">
+            <summary>
+            Returns a single instance by ID.
+            </summary>
+            <param name="id">Id of Type T instance.</param>
+            <returns>Returns T generic type based on Id.</returns>
+        </member>
+        <member name="T:MyLibrary.Repository.WorkerRepository">
+            <summary>
+            The worker repository inherited from the abstract Repository class, implements the IWorkerRepository interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.WorkerRepository"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.ChangeAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newAddress">The new address of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.ChangeEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newEmail">The new email of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newName">The new name of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.ChangeSalary(System.Int32,System.Int32)">
+            <summary>
+            Changes the salary of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newSalary">The new salary of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.WorkerRepository.GetOne(System.Int32)">
+            <summary>
+            Returns a worker instance back by id.
+            </summary>
+            <param name="id">The id of the worker instance.</param>
+            <returns>The worker instance.</returns>
+        </member>
+        <member name="T:MyLibrary.Repository.IBookRentalRepository">
+            <summary>
+            The book rental repository interface that implements the generic IRepository interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.IBookRentalRepository.ChangeDays(System.Int32,System.Int32)">
+            <summary>
+            Changes the number of days of a rental.
+            </summary>
+            <param name="id">The id of the rental.</param>
+            <param name="newDays">The new number of days of the rental.</param>
+        </member>
+        <member name="T:MyLibrary.Repository.IBookRepository">
+            <summary>
+            The book repository interface that implements the generic IRepository interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.IBookRepository.ChangeYear(System.String,System.Int32)">
+            <summary>
+            Changes the publishing year of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newYear">The new publishing year of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IBookRepository.ChangeLanguage(System.String,System.String)">
+            <summary>
+            Changes the language of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newLanguage">The new language of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IBookRepository.ChangePublisher(System.String,System.String)">
+            <summary>
+            Changes the publisher of a book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newPublisher">The new publisher of the book.</param>
+        </member>
+        <member name="T:MyLibrary.Repository.IRenterRepository">
+            <summary>
+            The renter repository interface that implements the generic IRepository interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.IRenterRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newName">The new name of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IRenterRepository.ChangeAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newAddress">The new address of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IRenterRepository.ChangeEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newEmail">The new email of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IRenterRepository.ChangeMembershipType(System.Int32,System.String)">
+            <summary>
+            Changes the type of the membership by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newMembershipType">The new type of membership.</param>
+        </member>
+        <member name="T:MyLibrary.Repository.IRepository`2">
+            <summary>
+            The generic repository interface.
+            </summary>
+            <typeparam name="T">Generic type T.</typeparam>
+            <typeparam name="TK">Generic type TK.</typeparam>
+        </member>
+        <member name="M:MyLibrary.Repository.IRepository`2.GetOne(`1)">
+            <summary>
+            Returns a single instance by ID.
+            </summary>
+            <param name="id">Id of Type T instance.</param>
+            <returns>Returns T generic type based on Id.</returns>
+        </member>
+        <member name="M:MyLibrary.Repository.IRepository`2.GetAll">
+            <summary>
+            Returns an IQueryable type of all the elements in a table.
+            </summary>
+            <returns>Returns IQueryable type.</returns>
+        </member>
+        <member name="M:MyLibrary.Repository.IRepository`2.AddNew(`0)">
+            <summary>
+            Adds a new instance to a table.
+            </summary>
+            <param name="newInstance">The new instance.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IRepository`2.DeleteOld(`1)">
+            <summary>
+            Deletes an instance from a table by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+        </member>
+        <member name="T:MyLibrary.Repository.IWorkerRepository">
+            <summary>
+            The worker repository interface that implements the generic IRepository interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.IWorkerRepository.ChangeName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newName">The new name of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IWorkerRepository.ChangeAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newAddress">The new address of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IWorkerRepository.ChangeEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newEmail">The new email of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IWorkerRepository.ChangeSalary(System.Int32,System.Int32)">
+            <summary>
+            Changes the salary of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newSalary">The new salary of the worker.</param>
+        </member>
     </members>
 </doc>

@@ -4,5 +4,306 @@
         <name>MyLibrary.Data</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Data.Book">
+            <summary>
+            The table of books.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Book.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Data.Book"/> class.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.ISBN">
+            <summary>
+            Gets or sets ISBN number of the book, also key of the Book table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Title">
+            <summary>
+            Gets or sets title of the book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.AuthorName">
+            <summary>
+            Gets or sets the name of the book's author.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Year">
+            <summary>
+            Gets or sets the year when the book was published.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Language">
+            <summary>
+            Gets or sets the language of the book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Category">
+            <summary>
+            Gets or sets the category of the book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.PageNumber">
+            <summary>
+            Gets or sets the number of pages in the book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Publisher">
+            <summary>
+            Gets or sets the book's publisher's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Book.Rentals">
+            <summary>
+            Gets virtual connection between the Book table and the BookRental table.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Book.ColumnInfo">
+            <summary>
+            Gives back the column names from the ToString method.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Data.Book.ToString">
+            <summary>
+            Gives back all properties of the book.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="T:MyLibrary.Data.BookRental">
+            <summary>
+            The table of rentals.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.RentalId">
+            <summary>
+            Gets or sets the id of the rental, also the key of BookRental.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.RentalDate">
+            <summary>
+            Gets or sets the date of the rental.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.Days">
+            <summary>
+            Gets or sets the days of the rental.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.RenterId">
+            <summary>
+            Gets or sets the foreign key that references to the Renter table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.WorkerId">
+            <summary>
+            Gets or sets the foreign key that references to the Worker table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.ISBN">
+            <summary>
+            Gets or sets the foreign key that references to the Book table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.Renter">
+            <summary>
+            Gets or sets the virtual connection between the BookRental and the Renter table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.Worker">
+            <summary>
+            Gets or sets the virtual connection between the BookRental and the Worker table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.BookRental.Book">
+            <summary>
+            Gets or sets the virtual connection between the BookRental and the Book table.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.BookRental.ColumnInfo">
+            <summary>
+            Gives back the column names from the ToString method.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Data.BookRental.ToString">
+            <summary>
+            Gives back all properties of the rental.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="T:MyLibrary.Data.LibraryContext">
+            <summary>
+            The context class of the database.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.LibraryContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Data.LibraryContext"/> class.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.LibraryContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{MyLibrary.Data.LibraryContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Data.LibraryContext"/> class.
+            </summary>
+            <param name="options">Options of the dbcontext.</param>
+        </member>
+        <member name="P:MyLibrary.Data.LibraryContext.Books">
+            <summary>
+            Gets or sets the Book table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.LibraryContext.Renters">
+            <summary>
+            Gets or sets the Renter table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.LibraryContext.Workers">
+            <summary>
+            Gets or sets the Worker table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.LibraryContext.Rentals">
+            <summary>
+            Gets or sets the BookRental table.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.LibraryContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Configures the database.
+            </summary>
+            <param name="optionsBuilder">Optionsbuilder of the DbContext.</param>
+        </member>
+        <member name="M:MyLibrary.Data.LibraryContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Fills the database and makes the connections between the tables with Fluent API.
+            </summary>
+            <param name="modelBuilder">Builder of the model.</param>
+        </member>
+        <member name="T:MyLibrary.Data.Renter">
+            <summary>
+            The table of renters.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Renter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Data.Renter"/> class.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.RenterId">
+            <summary>
+            Gets or sets the renter's id, also key of the Renter table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.Name">
+            <summary>
+            Gets or sets the renter's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.Address">
+            <summary>
+            Gets or sets the renter's address.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.Email">
+            <summary>
+            Gets or sets the renter's email.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.MembershipType">
+            <summary>
+            Gets or sets the type of the renter's membership.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.JoinDate">
+            <summary>
+            Gets or sets the date of the renter's joining to the library.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Renter.Rentals">
+            <summary>
+            Gets the virtual connection between the BookRental and the Renter table.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Renter.ColumnInfo">
+            <summary>
+            Gives back the column names from the ToString method.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Data.Renter.ToString">
+            <summary>
+            Gives back all properties of the renter.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="T:MyLibrary.Data.Worker">
+            <summary>
+            The table of workers.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Worker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Data.Worker"/> class.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.WorkerId">
+            <summary>
+            Gets or sets the worker's id, also key of the Worker table.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Name">
+            <summary>
+            Gets or sets the worker's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.BirthDate">
+            <summary>
+            Gets or sets the worker's birth date.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Gender">
+            <summary>
+            Gets or sets the worker's gender.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Address">
+            <summary>
+            Gets or sets the worker's address.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Email">
+            <summary>
+            Gets or sets the worker's email.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Salary">
+            <summary>
+            Gets or sets the worker's salary.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.HireDate">
+            <summary>
+            Gets or sets the worker's date of hire.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Data.Worker.Rentals">
+            <summary>
+            Gets the virtual connection between the BookRental table and the Worker table.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Data.Worker.ColumnInfo">
+            <summary>
+            Gives back the column names from the ToString method.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Data.Worker.ToString">
+            <summary>
+            Gives back all properties of the worker.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
     </members>
 </doc>

@@ -4,5 +4,60 @@
         <name>MyLibrary.Program</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Program.Factory">
+            <summary>
+            The factory class of the DbContext, Repositories and Logics.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Program.Factory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Program.Factory"/> class.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.LibraryContext">
+            <summary>
+            Gets the context of the database.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.BookRepository">
+            <summary>
+            Gets the Book table's repository.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.RenterRepository">
+            <summary>
+            Gets the Renter table's repository.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.WorkerRepository">
+            <summary>
+            Gets the Worker's table repository.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.BookRentalRepository">
+            <summary>
+            Gets the BookRental's table repository.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.LibraryLogic">
+            <summary>
+            Gets the BookRentalRepository's and the BookRepository's logic.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Program.Factory.PersonLogic">
+            <summary>
+            Gets the WorkerRepository's and the RenterRepository's logic.
+            </summary>
+        </member>
+        <member name="T:MyLibrary.Program.MainProgram">
+            <summary>
+            The main program.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Program.MainProgram.Main">
+            <summary>
+            The main method, where the program starts.
+            </summary>
+        </member>
     </members>
 </doc>

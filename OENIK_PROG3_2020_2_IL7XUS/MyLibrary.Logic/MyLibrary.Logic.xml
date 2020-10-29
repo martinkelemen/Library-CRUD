@@ -4,5 +4,395 @@
         <name>MyLibrary.Logic</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Logic.ILibraryLogic">
+            <summary>
+            The logic interface of the book repository class and the book rental repository class.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetBookById(System.Int32)">
+            <summary>
+            Gives back a Book instance by id.
+            </summary>
+            <param name="id">The id of the Book instance.</param>
+            <returns>The Book instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetBookRentalById(System.Int32)">
+            <summary>
+            Gives back a BookRental instance by id.
+            </summary>
+            <param name="id">The id of the BookRental instance.</param>
+            <returns>The BookRental instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetAllBooks">
+            <summary>
+            Gives back an IList type with all books.
+            </summary>
+            <returns>The IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetAllBookRentals">
+            <summary>
+            Gives back an IList type with all rentals.
+            </summary>
+            <returns>The IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.AddBook(MyLibrary.Data.Book)">
+            <summary>
+            Adds a new book to the table.
+            </summary>
+            <param name="bookInstance">The instance of the new book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.AddRental(MyLibrary.Data.BookRental)">
+            <summary>
+            Adds a new rental to the table.
+            </summary>
+            <param name="rentalInstance">The instance of the new rental.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ChangeBookLanguage(System.String,System.String)">
+            <summary>
+            Changes the book's language by id.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newLanguage">The new language of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ChangeBookPublisher(System.String,System.String)">
+            <summary>
+            Changes the book's publisher.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newPublisher">The new publisher of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ChangeBookYear(System.String,System.Int32)">
+            <summary>
+            Changes the publishing year of the book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newYear">The new publishing year of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ChangeBookRentalDays(System.Int32,System.Int32)">
+            <summary>
+            Changes the rental's number of days.
+            </summary>
+            <param name="id">The id of the rental.</param>
+            <param name="newDays">The new number of days of the rental.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetRentByLanguage">
+            <summary>
+            Gives back an IList type with the rentals groupped by book's languages.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetRentByMembership">
+            <summary>
+            Gives back an IList type with the rentals groupped by renter's type of memberships.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ListAllRents">
+            <summary>
+            Gives back an IList type with all rents and the names of book's, worker's and renter's.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="T:MyLibrary.Logic.IPersonLogic">
+            <summary>
+            The logic interface of the worker repository class and the renter repository class.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.GetRenterById(System.Int32)">
+            <summary>
+            Gives back a renter instance by id.
+            </summary>
+            <param name="id">The id of the renter instance.</param>
+            <returns>Renter instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.GetWorkerById(System.Int32)">
+            <summary>
+            Gives back a worker instance by id.
+            </summary>
+            <param name="id">The id of the worker instance.</param>
+            <returns>Worker instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.GetAllRenters">
+            <summary>
+            Gives back an IList type with all renters.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.GetAllWorkers">
+            <summary>
+            Gives back an IList type with all workers.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.AddRenter(MyLibrary.Data.Renter)">
+            <summary>
+            Adds a new Renter instance to the table.
+            </summary>
+            <param name="renterInstance">The new Renter instance.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.AddWorker(MyLibrary.Data.Worker)">
+            <summary>
+            Adds a new Worker instance to the table.
+            </summary>
+            <param name="workerInstance">The new Worker instance.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeRenterAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newAddress">The new address of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeRenterEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newEmail">The new email of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeRenterMembershipType(System.Int32,System.String)">
+            <summary>
+            Changes the type of the membership by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newMembershipType">The new type of membership.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeRenterName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newName">The new name of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeWorkerAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newAddress">The new address of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeWorkerEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newEmail">The new email of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeWorkerName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newName">The new name of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.ChangeWorkerSalary(System.Int32,System.Int32)">
+            <summary>
+            Changes the salary of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newSalary">The new salary of the worker.</param>
+        </member>
+        <member name="T:MyLibrary.Logic.LibraryLogic">
+            <summary>
+            The logic class of the book repository class and the book rental repository class, implements the ILibraryLogic interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.#ctor(MyLibrary.Repository.IBookRepository,MyLibrary.Repository.IBookRentalRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Logic.LibraryLogic"/> class.
+            </summary>
+            <param name="bookRepository">The repository of the Book table.</param>
+            <param name="bookRentalRepository">The repository of the BookRental table.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.AddBook(MyLibrary.Data.Book)">
+            <summary>
+            Adds a new book to the table.
+            </summary>
+            <param name="bookInstance">The instance of the new book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.AddRental(MyLibrary.Data.BookRental)">
+            <summary>
+            Adds a new rental to the table.
+            </summary>
+            <param name="rentalInstance">The instance of the new rental.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ChangeBookLanguage(System.String,System.String)">
+            <summary>
+            Changes the book's language by id.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newLanguage">The new language of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ChangeBookPublisher(System.String,System.String)">
+            <summary>
+            Changes the book's publisher.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newPublisher">The new publisher of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ChangeBookRentalDays(System.Int32,System.Int32)">
+            <summary>
+            Changes the rental's number of days.
+            </summary>
+            <param name="id">The id of the rental.</param>
+            <param name="newDays">The new number of days of the rental.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ChangeBookYear(System.String,System.Int32)">
+            <summary>
+            Changes the publishing year of the book.
+            </summary>
+            <param name="id">The id of the book.</param>
+            <param name="newYear">The new publishing year of the book.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetAllBookRentals">
+            <summary>
+            Gives back an IList type with all rentals.
+            </summary>
+            <returns>The IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetAllBooks">
+            <summary>
+            Gives back an IList type with all books.
+            </summary>
+            <returns>The IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetBookById(System.Int32)">
+            <summary>
+            Gives back a Book instance by id.
+            </summary>
+            <param name="id">The id of the Book instance.</param>
+            <returns>The Book instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetBookRentalById(System.Int32)">
+            <summary>
+            Gives back a BookRental instance by id.
+            </summary>
+            <param name="id">The id of the BookRental instance.</param>
+            <returns>The BookRental instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetRentByLanguage">
+            <summary>
+            Gives back an IList type with the rentals groupped by book's languages.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetRentByMembership">
+            <summary>
+            Gives back an IList type with the rentals groupped by renter's type of memberships.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ListAllRents">
+            <summary>
+            Gives back an IList type with all rents and the names of book's, worker's and renter's.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="T:MyLibrary.Logic.PersonLogic">
+            <summary>
+            The logic class of the worker repository class and the renter repository class, implements the IPersonLogic interface.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.#ctor(MyLibrary.Repository.IRenterRepository,MyLibrary.Repository.IWorkerRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Logic.PersonLogic"/> class.
+            </summary>
+            <param name="renterRepository">The renter repository.</param>
+            <param name="workerRepository">The worker repository.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.AddRenter(MyLibrary.Data.Renter)">
+            <summary>
+            Adds a new Renter instance to the table.
+            </summary>
+            <param name="renterInstance">The new Renter instance.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.AddWorker(MyLibrary.Data.Worker)">
+            <summary>
+            Adds a new Worker instance to the table.
+            </summary>
+            <param name="workerInstance">The new Worker instance.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeRenterAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newAddress">The new address of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeRenterEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newEmail">The new email of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeRenterMembershipType(System.Int32,System.String)">
+            <summary>
+            Changes the type of the membership by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newMembershipType">The new type of membership.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeRenterName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a renter by id.
+            </summary>
+            <param name="id">The id of the renter.</param>
+            <param name="newName">The new name of the renter.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeWorkerAddress(System.Int32,System.String)">
+            <summary>
+            Changes the address of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newAddress">The new address of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeWorkerEmail(System.Int32,System.String)">
+            <summary>
+            Changes the email of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newEmail">The new email of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeWorkerName(System.Int32,System.String)">
+            <summary>
+            Changes the name of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newName">The new name of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.ChangeWorkerSalary(System.Int32,System.Int32)">
+            <summary>
+            Changes the salary of a worker by id.
+            </summary>
+            <param name="id">The id of the worker.</param>
+            <param name="newSalary">The new salary of the worker.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.GetAllRenters">
+            <summary>
+            Gives back an IList type with all renters.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.GetAllWorkers">
+            <summary>
+            Gives back an IList type with all workers.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.GetRenterById(System.Int32)">
+            <summary>
+            Gives back a renter instance by id.
+            </summary>
+            <param name="id">The id of the renter instance.</param>
+            <returns>Renter instance.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.GetWorkerById(System.Int32)">
+            <summary>
+            Gives back a worker instance by id.
+            </summary>
+            <param name="id">The id of the worker instance.</param>
+            <returns>Worker instance.</returns>
+        </member>
     </members>
 </doc>
