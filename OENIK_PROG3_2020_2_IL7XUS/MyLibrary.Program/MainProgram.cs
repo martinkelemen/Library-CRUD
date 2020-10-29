@@ -11,8 +11,14 @@ namespace MyLibrary.Program
     using MyLibrary.Data;
     using MyLibrary.Logic;
 
+    /// <summary>
+    /// The main program.
+    /// </summary>
     public static class MainProgram
     {
+        /// <summary>
+        /// The main method, where the program starts.
+        /// </summary>
         public static void Main()
         {
             Factory factory = new Factory();
@@ -43,7 +49,7 @@ namespace MyLibrary.Program
 
         private static void ListAllBooks(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine(libraryLogic.GetAllBooks().Select(x => x.ColumnInfo()).FirstOrDefault());
+            Console.WriteLine(Book.ColumnInfo());
             libraryLogic.GetAllBooks().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -84,7 +90,7 @@ namespace MyLibrary.Program
 
         private static void ListAllWorkers(IPersonLogic personLogic)
         {
-            Console.WriteLine(personLogic.GetAllWorkers().Select(x => x.ColumnInfo()).FirstOrDefault());
+            Console.WriteLine(Worker.ColumnInfo());
             personLogic.GetAllWorkers().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -125,7 +131,7 @@ namespace MyLibrary.Program
 
         private static void ListAllRenters(IPersonLogic personLogic)
         {
-            Console.WriteLine(personLogic.GetAllRenters().Select(x => x.ColumnInfo()).FirstOrDefault());
+            Console.WriteLine(Renter.ColumnInfo());
             personLogic.GetAllRenters().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine($"\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -166,7 +172,7 @@ namespace MyLibrary.Program
 
         private static void ListAllRentals(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine(libraryLogic.GetAllBookRentals().Select(x => x.ColumnInfo()).FirstOrDefault());
+            Console.WriteLine(BookRental.ColumnInfo());
             libraryLogic.GetAllBookRentals().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();

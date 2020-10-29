@@ -12,32 +12,61 @@ namespace MyLibrary.Repository
     using Microsoft.EntityFrameworkCore;
     using MyLibrary.Data;
 
+    /// <summary>
+    /// The abstract ancestor class of the repository classes.
+    /// </summary>
+    /// <typeparam name="T">Generic type T.</typeparam>
+    /// <typeparam name="TK">Generic type TK.</typeparam>
     public abstract class Repository<T, TK> : IRepository<T, TK>
         where T : class
     {
-        protected DbContext ctx;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Repository{T, TK}"/> class.
+        /// </summary>
+        /// <param name="ctx">The context of the database.</param>
         public Repository(DbContext ctx)
         {
-            this.ctx = ctx;
+            this.Ctx = ctx;
         }
 
+        /// <summary>
+        /// Gets the context of the database.
+        /// </summary>
+        protected DbContext Ctx { get; }
+
+        /// <summary>
+        /// Adds a new instance to a table.
+        /// </summary>
+        /// <param name="newInstance">The new instance.</param>
         public void AddNew(T newInstance)
         {
-            this.ctx.Set<T>().Add(newInstance);
+            this.Ctx.Set<T>().Add(newInstance);
         }
 
+        /// <summary>
+        /// Deletes an instance from a table by id.
+        /// </summary>
+        /// <param name="id">The id of the instance.</param>
         public void DeleteOld(TK id)
         {
-            this.ctx.Set<T>().Remove(this.GetOne(id));
-            this.ctx.SaveChanges();
+            this.Ctx.Set<T>().Remove(this.GetOne(id));
+            this.Ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Returns an IQueryable type of all the elements in a table.
+        /// </summary>
+        /// <returns>Returns IQueryable type.</returns>
         public IQueryable<T> GetAll()
         {
-            return this.ctx.Set<T>();
+            return this.Ctx.Set<T>();
         }
 
+        /// <summary>
+        /// Returns a single instance by ID.
+        /// </summary>
+        /// <param name="id">Id of Type T instance.</param>
+        /// <returns>Returns T generic type based on Id.</returns>
         public abstract T GetOne(TK id);
     }
 }

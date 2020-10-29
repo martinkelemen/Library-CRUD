@@ -10,37 +10,72 @@ namespace MyLibrary.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
 
+    /// <summary>
+    /// The table of renters.
+    /// </summary>
     public class Renter
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Renter"/> class.
+        /// </summary>
         public Renter()
         {
             this.Rentals = new HashSet<BookRental>();
         }
 
+        /// <summary>
+        /// Gets or sets the renter's id, also key of the Renter table.
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RenterId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the renter's name.
+        /// </summary>
         [Required]
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the renter's address.
+        /// </summary>
         public string Address { get; set; }
 
+        /// <summary>
+        /// Gets or sets the renter's email.
+        /// </summary>
         [Required]
         public string Email { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the renter's membership.
+        /// </summary>
         public string MembershipType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the date of the renter's joining to the library.
+        /// </summary>
         public DateTime JoinDate { get; set; }
 
+        /// <summary>
+        /// Gets the virtual connection between the BookRental and the Renter table.
+        /// </summary>
         [NotMapped]
         public virtual ICollection<BookRental> Rentals { get; }
 
-        public string ColumnInfo()
+        /// <summary>
+        /// Gives back the column names from the ToString method.
+        /// </summary>
+        /// <returns>Returns a string.</returns>
+        public static string ColumnInfo()
         {
             return "Id - Name - Address - Email - Type of the membership - Join date";
         }
 
+        /// <summary>
+        /// Gives back all properties of the renter.
+        /// </summary>
+        /// <returns>Returns a string.</returns>
         public override string ToString()
         {
             return $"{this.RenterId} - {this.Name} - {this.Address} - {this.Email} - {this.MembershipType} - {this.JoinDate.ToShortDateString()}";

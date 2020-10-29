@@ -9,29 +9,55 @@ namespace MyLibrary.Data
     using System.Text;
     using Microsoft.EntityFrameworkCore;
 
+    /// <summary>
+    /// The context class of the database.
+    /// </summary>
     public class LibraryContext : DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LibraryContext"/> class.
+        /// </summary>
         public LibraryContext()
         {
             this.Database.EnsureCreated();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LibraryContext"/> class.
+        /// </summary>
+        /// <param name="options">Options of the dbcontext.</param>
         public LibraryContext(DbContextOptions<LibraryContext> options)
-            : base (options)
+            : base(options)
         {
         }
 
+        /// <summary>
+        /// Gets or sets the Book table.
+        /// </summary>
         public virtual DbSet<Book> Books { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Renter table.
+        /// </summary>
         public virtual DbSet<Renter> Renters { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Worker table.
+        /// </summary>
         public virtual DbSet<Worker> Workers { get; set; }
 
+        /// <summary>
+        /// Gets or sets the BookRental table.
+        /// </summary>
         public virtual DbSet<BookRental> Rentals { get; set; }
 
+        /// <summary>
+        /// Configures the database.
+        /// </summary>
+        /// <param name="optionsBuilder">Optionsbuilder of the DbContext.</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (optionsBuilder != null && !optionsBuilder.IsConfigured)
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
@@ -39,6 +65,10 @@ namespace MyLibrary.Data
             }
         }
 
+        /// <summary>
+        /// Fills the database and makes the connections between the tables with Fluent API.
+        /// </summary>
+        /// <param name="modelBuilder">Builder of the model.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Renter r0 = new Renter() { RenterId = 1, Name = "Arnold McCarthy", Email = "arnold.mccarthy@gmail.com", Address = "1726 Turnpike Drive, Decatur", JoinDate = new DateTime(2020, 03, 01), MembershipType = "Gold" };
@@ -75,75 +105,78 @@ namespace MyLibrary.Data
             BookRental br11 = new BookRental() { RentalId = 12, RentalDate = new DateTime(2020, 10, 07), Days = 30 };
 
             br0.ISBN = b0.ISBN;
-            br0.Renter_Id = r0.RenterId;
-            br0.Worker_Id = w0.WorkerId;
+            br0.RenterId = r0.RenterId;
+            br0.WorkerId = w0.WorkerId;
 
             br1.ISBN = b6.ISBN;
-            br1.Renter_Id = r2.RenterId;
-            br1.Worker_Id = w0.WorkerId;
+            br1.RenterId = r2.RenterId;
+            br1.WorkerId = w0.WorkerId;
 
             br2.ISBN = b5.ISBN;
-            br2.Renter_Id = r3.RenterId;
-            br2.Worker_Id = w1.WorkerId;
+            br2.RenterId = r3.RenterId;
+            br2.WorkerId = w1.WorkerId;
 
             br3.ISBN = b4.ISBN;
-            br3.Renter_Id = r3.RenterId;
-            br3.Worker_Id = w1.WorkerId;
+            br3.RenterId = r3.RenterId;
+            br3.WorkerId = w1.WorkerId;
 
             br4.ISBN = b4.ISBN;
-            br4.Renter_Id = r1.RenterId;
-            br4.Worker_Id = w1.WorkerId;
+            br4.RenterId = r1.RenterId;
+            br4.WorkerId = w1.WorkerId;
 
             br5.ISBN = b0.ISBN;
-            br5.Renter_Id = r4.RenterId;
-            br5.Worker_Id = w2.WorkerId;
+            br5.RenterId = r4.RenterId;
+            br5.WorkerId = w2.WorkerId;
 
             br6.ISBN = b3.ISBN;
-            br6.Renter_Id = r0.RenterId;
-            br6.Worker_Id = w2.WorkerId;
+            br6.RenterId = r0.RenterId;
+            br6.WorkerId = w2.WorkerId;
 
             br7.ISBN = b3.ISBN;
-            br7.Renter_Id = r1.RenterId;
-            br7.Worker_Id = w3.WorkerId;
+            br7.RenterId = r1.RenterId;
+            br7.WorkerId = w3.WorkerId;
 
             br8.ISBN = b6.ISBN;
-            br8.Renter_Id = r2.RenterId;
-            br8.Worker_Id = w0.WorkerId;
+            br8.RenterId = r2.RenterId;
+            br8.WorkerId = w0.WorkerId;
 
             br9.ISBN = b2.ISBN;
-            br9.Renter_Id = r4.RenterId;
-            br9.Worker_Id = w0.WorkerId;
+            br9.RenterId = r4.RenterId;
+            br9.WorkerId = w0.WorkerId;
 
             br10.ISBN = b2.ISBN;
-            br10.Renter_Id = r3.RenterId;
-            br10.Worker_Id = w1.WorkerId;
+            br10.RenterId = r3.RenterId;
+            br10.WorkerId = w1.WorkerId;
 
             br11.ISBN = b7.ISBN;
-            br11.Renter_Id = r0.RenterId;
-            br11.Worker_Id = w2.WorkerId;
+            br11.RenterId = r0.RenterId;
+            br11.WorkerId = w2.WorkerId;
 
-            modelBuilder.Entity<BookRental>(entity =>
+            if (modelBuilder != null)
             {
-                entity.HasOne(rental => rental.Book)
-                    .WithMany(book => book.Rentals)
-                    .HasForeignKey(rental => rental.ISBN)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                modelBuilder.Entity<BookRental>(entity =>
+                {
+                    entity.HasOne(rental => rental.Book)
+                        .WithMany(book => book.Rentals)
+                        .HasForeignKey(rental => rental.ISBN)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
 
-                entity.HasOne(rental => rental.Renter)
-                    .WithMany(renter => renter.Rentals)
-                    .HasForeignKey(rental => rental.Renter_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    entity.HasOne(rental => rental.Renter)
+                        .WithMany(renter => renter.Rentals)
+                        .HasForeignKey(rental => rental.RenterId)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
 
-                entity.HasOne(rental => rental.Worker)
-                    .WithMany(worker => worker.Rentals)
-                    .HasForeignKey(rental => rental.Worker_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
+                    entity.HasOne(rental => rental.Worker)
+                        .WithMany(worker => worker.Rentals)
+                        .HasForeignKey(rental => rental.WorkerId)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<BookRental>().HasData(br0, br1, br2, br3, br4, br5, br6, br7, br8, br9, br10, br11);
-            modelBuilder.Entity<Renter>().HasData(r0, r1, r2, r3, r4);
-            modelBuilder.Entity<Worker>().HasData(w0, w1, w2, w3);
-            modelBuilder.Entity<Book>().HasData(b0, b1, b2, b3, b4, b5, b6, b7);
+                    modelBuilder.Entity<BookRental>().HasData(br0, br1, br2, br3, br4, br5, br6, br7, br8, br9, br10, br11);
+                    modelBuilder.Entity<Renter>().HasData(r0, r1, r2, r3, r4);
+                    modelBuilder.Entity<Worker>().HasData(w0, w1, w2, w3);
+                    modelBuilder.Entity<Book>().HasData(b0, b1, b2, b3, b4, b5, b6, b7);
+                });
+            }
         }
     }
 }

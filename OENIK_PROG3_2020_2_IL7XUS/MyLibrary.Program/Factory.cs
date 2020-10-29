@@ -11,8 +11,14 @@ namespace MyLibrary.Program
     using MyLibrary.Logic;
     using MyLibrary.Repository;
 
+    /// <summary>
+    /// The factory class of the DbContext, Repositories and Logics.
+    /// </summary>
     public class Factory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Factory"/> class.
+        /// </summary>
         public Factory()
         {
             this.LibraryContext = new LibraryContext();
@@ -24,18 +30,39 @@ namespace MyLibrary.Program
             this.PersonLogic = new PersonLogic(this.RenterRepository, this.WorkerRepository);
         }
 
+        /// <summary>
+        /// Gets the context of the database.
+        /// </summary>
         public LibraryContext LibraryContext { get; }
 
+        /// <summary>
+        /// Gets the Book table's repository.
+        /// </summary>
         public BookRepository BookRepository { get; }
 
+        /// <summary>
+        /// Gets the Renter table's repository.
+        /// </summary>
         public RenterRepository RenterRepository { get; }
 
+        /// <summary>
+        /// Gets the Worker's table repository.
+        /// </summary>
         public WorkerRepository WorkerRepository { get; }
 
+        /// <summary>
+        /// Gets the BookRental's table repository.
+        /// </summary>
         public BookRentalRepository BookRentalRepository { get; }
 
+        /// <summary>
+        /// Gets the BookRentalRepository's and the BookRepository's logic.
+        /// </summary>
         public LibraryLogic LibraryLogic { get; }
 
+        /// <summary>
+        /// Gets the WorkerRepository's and the RenterRepository's logic.
+        /// </summary>
         public PersonLogic PersonLogic { get; }
     }
 }

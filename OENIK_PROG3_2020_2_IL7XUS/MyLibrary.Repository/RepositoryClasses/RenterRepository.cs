@@ -11,41 +11,73 @@ namespace MyLibrary.Repository
     using Microsoft.EntityFrameworkCore;
     using MyLibrary.Data;
 
+    /// <summary>
+    /// The renter repository class inherited from the abstract Repository class, implements the IRenterRepository.
+    /// </summary>
     public class RenterRepository : Repository<Renter, int>, IRenterRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RenterRepository"/> class.
+        /// </summary>
+        /// <param name="ctx">The context of the database.</param>
         public RenterRepository(DbContext ctx)
             : base(ctx)
         {
         }
 
+        /// <summary>
+        /// Changes the address of a renter by id.
+        /// </summary>
+        /// <param name="id">The id of the renter.</param>
+        /// <param name="newAddress">The new address of the renter.</param>
         public void ChangeAddress(int id, string newAddress)
         {
-            var renter = GetOne(id);
+            var renter = this.GetOne(id);
             renter.Address = newAddress;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Changes the email of a renter by id.
+        /// </summary>
+        /// <param name="id">The id of the renter.</param>
+        /// <param name="newEmail">The new email of the renter.</param>
         public void ChangeEmail(int id, string newEmail)
         {
-            var renter = GetOne(id);
+            var renter = this.GetOne(id);
             renter.Email = newEmail;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Changes the type of the membership by id.
+        /// </summary>
+        /// <param name="id">The id of the renter.</param>
+        /// <param name="newMembershipType">The new type of membership.</param>
         public void ChangeMembershipType(int id, string newMembershipType)
         {
-            var renter = GetOne(id);
+            var renter = this.GetOne(id);
             renter.MembershipType = newMembershipType;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Changes the name of a renter by id.
+        /// </summary>
+        /// <param name="id">The id of the renter.</param>
+        /// <param name="newName">The new name of the renter.</param>
         public void ChangeName(int id, string newName)
         {
-            var renter = GetOne(id);
+            var renter = this.GetOne(id);
             renter.Name = newName;
-            this.ctx.SaveChanges();
+            this.Ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// Returns a Renter instance by id.
+        /// </summary>
+        /// <param name="id">The id of the instance.</param>
+        /// <returns>A Renter instance.</returns>
         public override Renter GetOne(int id)
         {
             return this.GetAll().SingleOrDefault(x => x.RenterId == id);
