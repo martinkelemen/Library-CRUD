@@ -14,7 +14,7 @@ namespace MyLibrary.Repository
     /// <summary>
     /// The book rental repository class inherited from the abstract Repository class, implements the IBookRentalRepository.
     /// </summary>
-    public class BookRentalRepository : Repository<BookRental, int>, IBookRentalRepository
+    public class BookRentalRepository : DbRepository<BookRental, int>, IBookRentalRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BookRentalRepository"/> class.

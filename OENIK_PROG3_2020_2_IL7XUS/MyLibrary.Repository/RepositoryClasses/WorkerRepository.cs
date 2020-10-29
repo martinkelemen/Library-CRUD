@@ -14,7 +14,7 @@ namespace MyLibrary.Repository
     /// <summary>
     /// The worker repository inherited from the abstract Repository class, implements the IWorkerRepository interface.
     /// </summary>
-    public class WorkerRepository : Repository<Worker, int>, IWorkerRepository
+    public class WorkerRepository : DbRepository<Worker, int>, IWorkerRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkerRepository"/> class.

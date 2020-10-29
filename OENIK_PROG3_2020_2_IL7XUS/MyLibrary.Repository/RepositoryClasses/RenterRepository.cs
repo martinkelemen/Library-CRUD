@@ -14,7 +14,7 @@ namespace MyLibrary.Repository
     /// <summary>
     /// The renter repository class inherited from the abstract Repository class, implements the IRenterRepository.
     /// </summary>
-    public class RenterRepository : Repository<Renter, int>, IRenterRepository
+    public class RenterRepository : DbRepository<Renter, int>, IRenterRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenterRepository"/> class.

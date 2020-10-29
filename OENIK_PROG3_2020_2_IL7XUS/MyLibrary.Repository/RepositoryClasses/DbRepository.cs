@@ -1,4 +1,4 @@
-﻿// <copyright file="Repository.cs" company="PlaceholderCompany">
+﻿// <copyright file="DbRepository.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -17,14 +17,14 @@ namespace MyLibrary.Repository
     /// </summary>
     /// <typeparam name="T">Generic type T.</typeparam>
     /// <typeparam name="TK">Generic type TK.</typeparam>
-    public abstract class Repository<T, TK> : IRepository<T, TK>
+    public abstract class DbRepository<T, TK> : IRepository<T, TK>
         where T : class
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Repository{T, TK}"/> class.
+        /// Initializes a new instance of the <see cref="DbRepository{T, TK}"/> class.
         /// </summary>
         /// <param name="ctx">The context of the database.</param>
-        public Repository(DbContext ctx)
+        public DbRepository(DbContext ctx)
         {
             this.Ctx = ctx;
         }
