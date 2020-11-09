@@ -36,7 +36,7 @@ namespace MyLibrary.Logic
         /// <param name="bookInstance">The instance of the new book.</param>
         public void AddBook(Book bookInstance)
         {
-            throw new NotImplementedException();
+            this.bookRepository.AddNew(bookInstance);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace MyLibrary.Logic
         /// <param name="rentalInstance">The instance of the new rental.</param>
         public void AddRental(BookRental rentalInstance)
         {
-            throw new NotImplementedException();
+            this.bookRentalRepository.AddNew(rentalInstance);
         }
 
         /// <summary>

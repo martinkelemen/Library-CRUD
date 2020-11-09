@@ -18,7 +18,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOKS", () => this.ListAllBooks(libraryLogic))
-                .Add(">> ADD A NEW BOOK", () => this.AddNewBook())
+                .Add(">> ADD A NEW BOOK", () => this.AddNewBook(libraryLogic))
                 .Add(">> DELETE A BOOK", () => this.DeleteBook())
                 .Add(">> MODIFY A BOOK", () => this.ModifyBook())
                 .Add(">> RETURN", ConsoleMenu.Close);
@@ -34,9 +34,40 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewBook()
+        private void AddNewBook(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the details of the new book." + ' ');
+            Console.Write("ISBN number:" + ' ');
+            string isbn = Console.ReadLine();
+            Console.Write("\nTitle:" + ' ');
+            string title = Console.ReadLine();
+            Console.Write("\nAuthor's name:" + ' ');
+            string authorName = Console.ReadLine();
+            Console.Write("\nThe year of publishing:" + ' ');
+            int year = int.Parse(Console.ReadLine());
+            Console.Write("\nLanguage:" + ' ');
+            string language = Console.ReadLine();
+            Console.Write("\nCategory:" + ' ');
+            string category = Console.ReadLine();
+            Console.Write("\nNumber of pages:" + ' ');
+            int pages = int.Parse(Console.ReadLine());
+            Console.Write("\nPublisher's name:" + ' ');
+            string publisher = Console.ReadLine();
+
+            Book b = new Book()
+            {
+                ISBN = isbn,
+                Title = title,
+                AuthorName = authorName,
+                Year = year,
+                Language = language,
+                Category = category,
+                PageNumber = pages,
+                Publisher = publisher,
+            };
+
+            libraryLogic.AddBook(b);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -59,7 +90,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL WORKERS", () => ListAllWorkers(personLogic))
-                .Add(">> ADD A NEW WORKER", () => AddNewWorker())
+                .Add(">> ADD A NEW WORKER", () => AddNewWorker(personLogic))
                 .Add(">> DELETE A WORKER", () => DeleteWorker())
                 .Add(">> MODIFY A WORKER", () => ModifyBook())
                 .Add(">> RETURN", ConsoleMenu.Close);
@@ -75,9 +106,37 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewWorker()
+        private void AddNewWorker(IPersonLogic personLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the details of the new worker." + ' ');
+            Console.Write("Worker's name:" + ' ');
+            string name = Console.ReadLine();
+            Console.Write("\nWorker's email:" + ' ');
+            string email = Console.ReadLine();
+            Console.Write("\nWorker's address:" + ' ');
+            string address = Console.ReadLine();
+            Console.Write("\nWorker's birth date:" + ' ');
+            DateTime birthDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("\nWorker's gender" + ' ');
+            char gender = char.Parse(Console.ReadLine());
+            Console.Write("\nWorker's salary:" + ' ');
+            int salary = int.Parse(Console.ReadLine());
+            Console.Write("\nHire date:" + ' ');
+            DateTime hireDate = DateTime.Parse(Console.ReadLine());
+
+            Worker w = new Worker()
+            {
+                Name = name,
+                Email = email,
+                Address = address,
+                BirthDate = birthDate,
+                Gender = gender,
+                Salary = salary,
+                HireDate = hireDate,
+            };
+
+            personLogic.AddWorker(w);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -100,7 +159,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL RENTERS", () => ListAllRenters(personLogic))
-                .Add(">> ADD A NEW RENTER", () => AddNewRenter())
+                .Add(">> ADD A NEW RENTER", () => AddNewRenter(personLogic))
                 .Add(">> DELETE A RENTER", () => DeleteRenter())
                 .Add(">> MODIFY A RENTER", () => ModifyRenter())
                 .Add(">> RETURN", ConsoleMenu.Close);
@@ -116,9 +175,31 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewRenter()
+        private void AddNewRenter(IPersonLogic personLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the details of the new renter." + ' ');
+            Console.Write("Renter's name:" + ' ');
+            string name = Console.ReadLine();
+            Console.Write("\nRenter's email:" + ' ');
+            string email = Console.ReadLine();
+            Console.Write("\nRenter's address:" + ' ');
+            string address = Console.ReadLine();
+            Console.Write("\nDate of joining:" + ' ');
+            DateTime joinDate = DateTime.Parse(Console.ReadLine());
+            Console.Write("\nType of membership: " + ' ');
+            string membershipType = Console.ReadLine();
+
+            Renter r = new Renter()
+            {
+                Name = name,
+                Email = email,
+                Address = address,
+                JoinDate = joinDate,
+                MembershipType = membershipType,
+            };
+
+            personLogic.AddRenter(r);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -141,7 +222,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOK RENTALS", () => ListAllRentals(libraryLogic))
-                .Add(">> ADD A BOOK RENTAL", () => AddNewRental())
+                .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic))
                 .Add(">> DELETE A BOOK RENTAL", () => DeleteRental())
                 .Add(">> MODIFY A BOOK RENTAL", () => ModifyRental())
                 .Add(">> RETURN", ConsoleMenu.Close);
@@ -157,9 +238,31 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewRental()
+        private void AddNewRental(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the details of the new book rental." + ' ');
+            Console.Write("Book's ISBN number:" + ' ');
+            string isbn = Console.ReadLine();
+            Console.Write("Renter's ID:" + ' ');
+            int renterId = int.Parse(Console.ReadLine());
+            Console.Write("Worker's ID:" + ' ');
+            int workerId = int.Parse(Console.ReadLine());
+            Console.Write("The date of the rantal:" + ' ');
+            DateTime date = DateTime.Parse(Console.ReadLine());
+            Console.Write("Days:" + ' ');
+            int days = int.Parse(Console.ReadLine());
+
+            BookRental br = new BookRental()
+            {
+                ISBN = isbn,
+                RenterId = renterId,
+                WorkerId = workerId,
+                RentalDate = date,
+                Days = days,
+            };
+
+            libraryLogic.AddRental(br);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }

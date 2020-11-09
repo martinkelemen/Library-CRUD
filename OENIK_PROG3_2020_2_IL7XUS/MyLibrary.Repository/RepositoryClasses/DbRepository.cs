@@ -41,6 +41,7 @@ namespace MyLibrary.Repository
         public void AddNew(T newInstance)
         {
             this.Ctx.Set<T>().Add(newInstance);
+            this.Ctx.SaveChanges();
         }
 
         /// <summary>

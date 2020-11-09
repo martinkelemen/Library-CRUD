@@ -37,7 +37,7 @@ namespace MyLibrary.Logic
         /// <param name="renterInstance">The new Renter instance.</param>
         public void AddRenter(Renter renterInstance)
         {
-            throw new NotImplementedException();
+            this.renterRepository.AddNew(renterInstance);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MyLibrary.Logic
         /// <param name="workerInstance">The new Worker instance.</param>
         public void AddWorker(Worker workerInstance)
         {
-            throw new NotImplementedException();
+            this.workerRepository.AddNew(workerInstance);
         }
 
         /// <summary>
