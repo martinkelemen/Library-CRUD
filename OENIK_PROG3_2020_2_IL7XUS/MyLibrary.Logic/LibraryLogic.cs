@@ -55,7 +55,7 @@ namespace MyLibrary.Logic
         /// <param name="newLanguage">The new language of the book.</param>
         public void ChangeBookLanguage(string id, string newLanguage)
         {
-            throw new NotImplementedException();
+            this.bookRepository.ChangeLanguage(id, newLanguage);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MyLibrary.Logic
         /// <param name="newPublisher">The new publisher of the book.</param>
         public void ChangeBookPublisher(string id, string newPublisher)
         {
-            throw new NotImplementedException();
+            this.bookRepository.ChangePublisher(id, newPublisher);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace MyLibrary.Logic
         /// <param name="newDays">The new number of days of the rental.</param>
         public void ChangeBookRentalDays(int id, int newDays)
         {
-            throw new NotImplementedException();
+            this.bookRentalRepository.ChangeDays(id, newDays);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace MyLibrary.Logic
         /// <param name="newYear">The new publishing year of the book.</param>
         public void ChangeBookYear(string id, int newYear)
         {
-            throw new NotImplementedException();
+            this.bookRepository.ChangeYear(id, newYear);
         }
 
         public void DeleteBook(string isbn)

@@ -56,7 +56,7 @@ namespace MyLibrary.Logic
         /// <param name="newAddress">The new address of the renter.</param>
         public void ChangeRenterAddress(int id, string newAddress)
         {
-            throw new NotImplementedException();
+            this.renterRepository.ChangeAddress(id, newAddress);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace MyLibrary.Logic
         /// <param name="newEmail">The new email of the renter.</param>
         public void ChangeRenterEmail(int id, string newEmail)
         {
-            throw new NotImplementedException();
+            this.renterRepository.ChangeEmail(id, newEmail);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MyLibrary.Logic
         /// <param name="newMembershipType">The new type of membership.</param>
         public void ChangeRenterMembershipType(int id, string newMembershipType)
         {
-            throw new NotImplementedException();
+            this.renterRepository.ChangeMembershipType(id, newMembershipType);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MyLibrary.Logic
         /// <param name="newName">The new name of the renter.</param>
         public void ChangeRenterName(int id, string newName)
         {
-            throw new NotImplementedException();
+            this.renterRepository.ChangeName(id, newName);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MyLibrary.Logic
         /// <param name="newAddress">The new address of the worker.</param>
         public void ChangeWorkerAddress(int id, string newAddress)
         {
-            throw new NotImplementedException();
+            this.workerRepository.ChangeAddress(id, newAddress);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace MyLibrary.Logic
         /// <param name="newEmail">The new email of the worker.</param>
         public void ChangeWorkerEmail(int id, string newEmail)
         {
-            throw new NotImplementedException();
+            this.workerRepository.ChangeEmail(id, newEmail);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace MyLibrary.Logic
         /// <param name="newName">The new name of the worker.</param>
         public void ChangeWorkerName(int id, string newName)
         {
-            throw new NotImplementedException();
+            this.workerRepository.ChangeName(id, newName);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace MyLibrary.Logic
         /// <param name="newSalary">The new salary of the worker.</param>
         public void ChangeWorkerSalary(int id, int newSalary)
         {
-            throw new NotImplementedException();
+            this.workerRepository.ChangeSalary(id, newSalary);
         }
 
         public void DeleteRenter(int id)
