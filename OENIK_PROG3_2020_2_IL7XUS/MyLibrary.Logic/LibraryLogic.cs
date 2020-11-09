@@ -88,6 +88,16 @@ namespace MyLibrary.Logic
             throw new NotImplementedException();
         }
 
+        public void DeleteBook(string isbn)
+        {
+            this.bookRepository.DeleteOld(isbn);
+        }
+
+        public void DeleteRental(int id)
+        {
+            this.bookRentalRepository.DeleteOld(id);
+        }
+
         /// <summary>
         /// Gives back an IList type with all rentals.
         /// </summary>

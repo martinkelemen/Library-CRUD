@@ -27,7 +27,6 @@ namespace MyLibrary.Data
         /// Gets or sets ISBN number of the book, also key of the Book table.
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ISBN { get; set; }
 
         /// <summary>

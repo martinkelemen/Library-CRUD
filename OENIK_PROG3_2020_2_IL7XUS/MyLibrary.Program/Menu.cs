@@ -19,7 +19,7 @@ namespace MyLibrary.Program
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOKS", () => this.ListAllBooks(libraryLogic))
                 .Add(">> ADD A NEW BOOK", () => this.AddNewBook(libraryLogic))
-                .Add(">> DELETE A BOOK", () => this.DeleteBook())
+                .Add(">> DELETE A BOOK", () => this.DeleteBook(libraryLogic))
                 .Add(">> MODIFY A BOOK", () => this.ModifyBook())
                 .Add(">> RETURN", ConsoleMenu.Close);
 
@@ -72,9 +72,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteBook()
+        private void DeleteBook(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the ISBN number of the book." + ' ');
+            Console.Write("ID: " + ' ');
+            string isbn = Console.ReadLine();
+
+            libraryLogic.DeleteBook(isbn);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -91,7 +96,7 @@ namespace MyLibrary.Program
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL WORKERS", () => ListAllWorkers(personLogic))
                 .Add(">> ADD A NEW WORKER", () => AddNewWorker(personLogic))
-                .Add(">> DELETE A WORKER", () => DeleteWorker())
+                .Add(">> DELETE A WORKER", () => DeleteWorker(personLogic))
                 .Add(">> MODIFY A WORKER", () => ModifyBook())
                 .Add(">> RETURN", ConsoleMenu.Close);
 
@@ -141,9 +146,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteWorker()
+        private void DeleteWorker(IPersonLogic personLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the worker's id." + ' ');
+            Console.Write("ID: " + ' ');
+            int id = int.Parse(Console.ReadLine());
+
+            personLogic.DeleteWorker(id);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -160,7 +170,7 @@ namespace MyLibrary.Program
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL RENTERS", () => ListAllRenters(personLogic))
                 .Add(">> ADD A NEW RENTER", () => AddNewRenter(personLogic))
-                .Add(">> DELETE A RENTER", () => DeleteRenter())
+                .Add(">> DELETE A RENTER", () => DeleteRenter(personLogic))
                 .Add(">> MODIFY A RENTER", () => ModifyRenter())
                 .Add(">> RETURN", ConsoleMenu.Close);
 
@@ -204,9 +214,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteRenter()
+        private void DeleteRenter(IPersonLogic personLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the renter's id." + ' ');
+            Console.Write("ID: " + ' ');
+            int id = int.Parse(Console.ReadLine());
+
+            personLogic.DeleteRenter(id);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
@@ -223,7 +238,7 @@ namespace MyLibrary.Program
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOK RENTALS", () => ListAllRentals(libraryLogic))
                 .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic))
-                .Add(">> DELETE A BOOK RENTAL", () => DeleteRental())
+                .Add(">> DELETE A BOOK RENTAL", () => DeleteRental(libraryLogic))
                 .Add(">> MODIFY A BOOK RENTAL", () => ModifyRental())
                 .Add(">> RETURN", ConsoleMenu.Close);
 
@@ -267,9 +282,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteRental()
+        private void DeleteRental(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine("Not implemented yet." + ' ');
+            Console.WriteLine("Please enter the rental's id." + ' ');
+            Console.Write("ID: " + ' ');
+            int id = int.Parse(Console.ReadLine());
+
+            libraryLogic.DeleteRental(id);
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }

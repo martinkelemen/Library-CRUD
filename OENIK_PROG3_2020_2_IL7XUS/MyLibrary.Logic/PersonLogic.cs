@@ -129,6 +129,16 @@ namespace MyLibrary.Logic
             throw new NotImplementedException();
         }
 
+        public void DeleteRenter(int id)
+        {
+            this.renterRepository.DeleteOld(id);
+        }
+
+        public void DeleteWorker(int id)
+        {
+            this.workerRepository.DeleteOld(id);
+        }
+
         /// <summary>
         /// Gives back an IList type with all renters.
         /// </summary>

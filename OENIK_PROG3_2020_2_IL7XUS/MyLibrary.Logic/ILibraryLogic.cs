@@ -54,6 +54,10 @@ namespace MyLibrary.Logic
         /// <param name="rentalInstance">The instance of the new rental.</param>
         void AddRental(BookRental rentalInstance);
 
+        void DeleteBook(string ISBN);
+
+        void DeleteRental(int id);
+
         /// <summary>
         /// Changes the book's language by id.
         /// </summary>

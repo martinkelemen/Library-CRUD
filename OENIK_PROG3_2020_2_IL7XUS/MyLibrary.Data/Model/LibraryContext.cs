@@ -159,17 +159,17 @@ namespace MyLibrary.Data
                     entity.HasOne(rental => rental.Book)
                         .WithMany(book => book.Rentals)
                         .HasForeignKey(rental => rental.ISBN)
-                        .OnDelete(DeleteBehavior.ClientSetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     entity.HasOne(rental => rental.Renter)
                         .WithMany(renter => renter.Rentals)
                         .HasForeignKey(rental => rental.RenterId)
-                        .OnDelete(DeleteBehavior.ClientSetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     entity.HasOne(rental => rental.Worker)
                         .WithMany(worker => worker.Rentals)
                         .HasForeignKey(rental => rental.WorkerId)
-                        .OnDelete(DeleteBehavior.ClientSetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     modelBuilder.Entity<BookRental>().HasData(br0, br1, br2, br3, br4, br5, br6, br7, br8, br9, br10, br11);
                     modelBuilder.Entity<Renter>().HasData(r0, r1, r2, r3, r4);
