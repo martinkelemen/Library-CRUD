@@ -28,6 +28,7 @@ namespace MyLibrary.Program
             this.BookRentalRepository = new BookRentalRepository(this.LibraryContext);
             this.LibraryLogic = new LibraryLogic(this.BookRepository, this.BookRentalRepository);
             this.PersonLogic = new PersonLogic(this.RenterRepository, this.WorkerRepository);
+            this.Menu = new Menu();
         }
 
         /// <summary>
@@ -64,5 +65,7 @@ namespace MyLibrary.Program
         /// Gets the WorkerRepository's and the RenterRepository's logic.
         /// </summary>
         public PersonLogic PersonLogic { get; }
+
+        public Menu Menu { get; }
     }
 }
