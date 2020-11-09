@@ -90,18 +90,18 @@ namespace MyLibrary.Logic
         /// Gives back an IList type with the rentals groupped by book's languages.
         /// </summary>
         /// <returns>IList type.</returns>
-        IList<string> GetRentByLanguage();
+        IList<GroupByLanguage> GetRentByLanguage();
 
         /// <summary>
         /// Gives back an IList type with the rentals groupped by renter's type of memberships.
         /// </summary>
         /// <returns>IList type.</returns>
-        IList<string> GetRentByMembership();
+        IList<GroupByMembership> GetRentByMembership();
 
         /// <summary>
         /// Gives back an IList type with all rents and the names of book's, worker's and renter's.
         /// </summary>
         /// <returns>IList type.</returns>
-        IList<string> ListAllRents();
+        IList<RentalWithNames> ListAllRents();
     }
 }

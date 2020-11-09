@@ -140,27 +140,57 @@ namespace MyLibrary.Logic
         /// Gives back an IList type with the rentals groupped by book's languages.
         /// </summary>
         /// <returns>IList type.</returns>
-        public IList<string> GetRentByLanguage()
+        public IList<GroupByLanguage> GetRentByLanguage()
         {
-            throw new NotImplementedException();
+            var q = from x in this.bookRentalRepository.GetAll()
+                    group x by x.Book.Language into g
+                    orderby g.Count() descending
+                    select new GroupByLanguage()
+                    {
+                        Language = g.Key,
+                        Count = g.Count(),
+                    };
+
+            return q.ToList();
         }
 
         /// <summary>
         /// Gives back an IList type with the rentals groupped by renter's type of memberships.
         /// </summary>
         /// <returns>IList type.</returns>
-        public IList<string> GetRentByMembership()
+        public IList<GroupByMembership> GetRentByMembership()
         {
-            throw new NotImplementedException();
+            var q = from x in this.bookRentalRepository.GetAll()
+                    group x by x.Renter.MembershipType into g
+                    orderby g.Count() descending
+                    select new GroupByMembership()
+                    {
+                        MembershipType = g.Key,
+                        Count = g.Count(),
+                    };
+
+            return q.ToList();
         }
 
         /// <summary>
         /// Gives back an IList type with all rents and the names of book's, worker's and renter's.
         /// </summary>
         /// <returns>IList type.</returns>
-        public IList<string> ListAllRents()
+        public IList<RentalWithNames> ListAllRents()
         {
-            throw new NotImplementedException();
+            var q = from x in this.bookRentalRepository.GetAll()
+                    orderby x.RentalId
+                    select new RentalWithNames()
+                    {
+                        RentId = x.RentalId,
+                        BookName = x.Book.Title,
+                        RenterName = x.Renter.Name,
+                        WorkerName = x.Worker.Name,
+                        RentDate = x.RentalDate,
+                        Days = x.Days,
+                    };
+
+            return q.ToList();
         }
     }
 }

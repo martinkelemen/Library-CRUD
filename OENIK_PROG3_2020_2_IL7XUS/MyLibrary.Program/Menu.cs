@@ -14,6 +14,46 @@ namespace MyLibrary.Program
 
     public class Menu
     {
+        public void GroupByLanguages(ILibraryLogic libraryLogic)
+        {
+            var results = libraryLogic.GetRentByLanguage();
+
+            foreach (var item in results)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
+        public void GroupByMembershipType(ILibraryLogic libraryLogic)
+        {
+            var results = libraryLogic.GetRentByMembership();
+
+            foreach (var item in results)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
+        public void ListAllRentsWithNames(ILibraryLogic libraryLogic)
+        {
+            var rentals = libraryLogic.ListAllRents();
+            Console.WriteLine(RentalWithNames.ColumnInfo());
+
+            foreach (var rent in rentals)
+            {
+                Console.WriteLine(rent);
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
         public void BookMenu(ILibraryLogic libraryLogic)
         {
             var menu = new ConsoleMenu()
