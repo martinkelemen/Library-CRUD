@@ -8,11 +8,11 @@ namespace MyLibrary.Logic
     {
         public string Language { get; set; }
 
-        public int Count { get; set; }
+        public double Average { get; set; }
 
         public override string ToString()
         {
-            return $"A book with {this.Language} language was rented {this.Count} times.";
+            return $"A book with {this.Language} language was rented {this.Average} days on average.";
         }
     }
 }

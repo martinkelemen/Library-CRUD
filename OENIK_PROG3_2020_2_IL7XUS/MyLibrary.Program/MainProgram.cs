@@ -30,7 +30,7 @@ namespace MyLibrary.Program
                 .Add(">>WORKERS", () => factory.Menu.WorkerMenu(factory.PersonLogic))
                 .Add(">>RENTERS", () => factory.Menu.RenterMenu(factory.PersonLogic))
                 .Add(">>BOOK RENTALS", () => factory.Menu.RentalMenu(factory.LibraryLogic))
-                .Add(">>GROUP BY LANGUAGES AND COUNT THEM", () => factory.Menu.GroupByLanguages(factory.LibraryLogic))
+                .Add(">>GROUP BY LANGUAGES WITH AVERAGES OF THE NUMBER OF RENTAL DAYS", () => factory.Menu.GroupByLanguages(factory.LibraryLogic))
                 .Add(">>GROUP BY MEMBERSHIP TYPES AND COUNT THEM", () => factory.Menu.GroupByMembershipType(factory.LibraryLogic))
                 .Add(">>LIST RENTALS WITH ALL NAMES", () => factory.Menu.ListAllRentsWithNames(factory.LibraryLogic))
                 .Add(">> EXIT", ConsoleMenu.Close);

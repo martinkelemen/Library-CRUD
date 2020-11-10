@@ -144,11 +144,11 @@ namespace MyLibrary.Logic
         {
             var q = from x in this.bookRentalRepository.GetAll()
                     group x by x.Book.Language into g
-                    orderby g.Count() descending
+                    orderby g.Average(t => t.Days) descending
                     select new GroupByLanguage()
                     {
                         Language = g.Key,
-                        Count = g.Count(),
+                        Average = g.Average(t => t.Days),
                     };
 
             return q.ToList();
