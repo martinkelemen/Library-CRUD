@@ -40,7 +40,6 @@ namespace MyLibrary.Logic
         /// <returns>IList type.</returns>
         IList<Worker> GetAllWorkers();
 
-
         /// <summary>
         /// Adds a new Renter instance to the table.
         /// </summary>
@@ -53,8 +52,16 @@ namespace MyLibrary.Logic
         /// <param name="workerInstance">The new Worker instance.</param>
         void AddWorker(Worker workerInstance);
 
+        /// <summary>
+        /// Deletes a Renter instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The renter's ID.</param>
         void DeleteRenter(int id);
 
+        /// <summary>
+        /// Deletes a Worker instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The worker's ID.</param>
         void DeleteWorker(int id);
 
         /// <summary>

@@ -6,67 +6,144 @@ namespace MyLibrary.Program
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using ConsoleTools;
     using MyLibrary.Data;
     using MyLibrary.Logic;
 
-    public class Menu
+    /// <summary>
+    /// The class for the program's menu options.
+    /// </summary>
+    public static class Menu
     {
-        public void GroupByLanguages(ILibraryLogic libraryLogic)
+        /// <summary>
+        /// A non-crud method. Groups by languages with averages of the number of rental days.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void GroupByLanguages(ILibraryLogic libraryLogic)
         {
-            var results = libraryLogic.GetRentByLanguage();
-
-            foreach (var item in results)
+            if (libraryLogic != null)
             {
-                Console.WriteLine(item);
+                var results = libraryLogic.GetRentByLanguage();
+
+                foreach (var item in results)
+                {
+                    Console.WriteLine(item);
+                }
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
 
-        public void GroupByMembershipType(ILibraryLogic libraryLogic)
+        /// <summary>
+        /// A non-crud method. Groups by membership types and count them.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void GroupByMembershipType(ILibraryLogic libraryLogic)
         {
-            var results = libraryLogic.GetRentByMembership();
-
-            foreach (var item in results)
+            if (libraryLogic != null)
             {
-                Console.WriteLine(item);
+                var results = libraryLogic.GetRentByMembership();
+
+                foreach (var item in results)
+                {
+                    Console.WriteLine(item);
+                }
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
 
-        public void ListAllRentsWithNames(ILibraryLogic libraryLogic)
+        /// <summary>
+        /// A non-crud method. List all of the book rentals with the book's, worker's and renter's names.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void ListAllRentsWithNames(ILibraryLogic libraryLogic)
         {
-            var rentals = libraryLogic.ListAllRents();
-            Console.WriteLine(RentalWithNames.ColumnInfo());
-
-            foreach (var rent in rentals)
+            if (libraryLogic != null)
             {
-                Console.WriteLine(rent);
+                var rentals = libraryLogic.ListAllRents();
+                Console.WriteLine(RentalWithNames.ColumnInfo());
+
+                foreach (var rent in rentals)
+                {
+                    Console.WriteLine(rent);
+                }
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
 
-        public void BookMenu(ILibraryLogic libraryLogic)
+        /// <summary>
+        /// Lists the options of the books' collection.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void BookMenu(ILibraryLogic libraryLogic)
         {
             var menu = new ConsoleMenu()
-                .Add(">> LIST ALL BOOKS", () => this.ListAllBooks(libraryLogic))
-                .Add(">> ADD A NEW BOOK", () => this.AddNewBook(libraryLogic))
-                .Add(">> DELETE A BOOK", () => this.DeleteBook(libraryLogic))
-                .Add(">> MODIFY A BOOK", () => this.ModifyBook(libraryLogic))
+                .Add(">> LIST ALL BOOKS", () => ListAllBooks(libraryLogic))
+                .Add(">> ADD A NEW BOOK", () => AddNewBook(libraryLogic))
+                .Add(">> DELETE A BOOK", () => DeleteBook(libraryLogic))
+                .Add(">> MODIFY A BOOK", () => ModifyBook(libraryLogic))
                 .Add(">> RETURN", ConsoleMenu.Close);
 
             menu.Show();
         }
 
-        private void ListAllBooks(ILibraryLogic libraryLogic)
+        /// <summary>
+        /// Lists the options of the worker' collection.
+        /// </summary>
+        /// <param name="personLogic">The logic class of the people.</param>
+        public static void WorkerMenu(IPersonLogic personLogic)
+        {
+            var menu = new ConsoleMenu()
+                .Add(">> LIST ALL WORKERS", () => ListAllWorkers(personLogic))
+                .Add(">> ADD A NEW WORKER", () => AddNewWorker(personLogic))
+                .Add(">> DELETE A WORKER", () => DeleteWorker(personLogic))
+                .Add(">> MODIFY A WORKER", () => ModifyWorker(personLogic))
+                .Add(">> RETURN", ConsoleMenu.Close);
+
+            menu.Show();
+        }
+
+        /// <summary>
+        /// Lists the options of the renters' collection.
+        /// </summary>
+        /// <param name="personLogic">The logic class of the people.</param>
+        public static void RenterMenu(IPersonLogic personLogic)
+        {
+            var menu = new ConsoleMenu()
+                .Add(">> LIST ALL RENTERS", () => ListAllRenters(personLogic))
+                .Add(">> ADD A NEW RENTER", () => AddNewRenter(personLogic))
+                .Add(">> DELETE A RENTER", () => DeleteRenter(personLogic))
+                .Add(">> MODIFY A RENTER", () => ModifyRenter(personLogic))
+                .Add(">> RETURN", ConsoleMenu.Close);
+
+            menu.Show();
+        }
+
+        /// <summary>
+        /// Lists the options of the rentals' collection.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void RentalMenu(ILibraryLogic libraryLogic)
+        {
+            var menu = new ConsoleMenu()
+                .Add(">> LIST ALL BOOK RENTALS", () => ListAllRentals(libraryLogic))
+                .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic))
+                .Add(">> DELETE A BOOK RENTAL", () => DeleteRental(libraryLogic))
+                .Add(">> MODIFY A BOOK RENTAL'S NUMBER OF DAYS", () => ModifyRentalDays(libraryLogic))
+                .Add(">> RETURN", ConsoleMenu.Close);
+
+            menu.Show();
+        }
+
+        private static void ListAllBooks(ILibraryLogic libraryLogic)
         {
             Console.WriteLine(Book.ColumnInfo());
             libraryLogic.GetAllBooks().ToList().ForEach(x => Console.WriteLine(x.ToString()));
@@ -74,8 +151,10 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewBook(ILibraryLogic libraryLogic)
+        private static void AddNewBook(ILibraryLogic libraryLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the details of the new book." + ' ');
             Console.Write("ISBN number:" + ' ');
             string isbn = Console.ReadLine();
@@ -84,13 +163,13 @@ namespace MyLibrary.Program
             Console.Write("\nAuthor's name:" + ' ');
             string authorName = Console.ReadLine();
             Console.Write("\nThe year of publishing:" + ' ');
-            int year = int.Parse(Console.ReadLine());
+            int year = int.Parse(Console.ReadLine(), ci);
             Console.Write("\nLanguage:" + ' ');
             string language = Console.ReadLine();
             Console.Write("\nCategory:" + ' ');
             string category = Console.ReadLine();
             Console.Write("\nNumber of pages:" + ' ');
-            int pages = int.Parse(Console.ReadLine());
+            int pages = int.Parse(Console.ReadLine(), ci);
             Console.Write("\nPublisher's name:" + ' ');
             string publisher = Console.ReadLine();
 
@@ -112,7 +191,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteBook(ILibraryLogic libraryLogic)
+        private static void DeleteBook(ILibraryLogic libraryLogic)
         {
             Console.WriteLine("Please enter the ISBN number of the book." + ' ');
             Console.Write("ISBN: " + ' ');
@@ -124,18 +203,18 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ModifyBook(ILibraryLogic libraryLogic)
+        private static void ModifyBook(ILibraryLogic libraryLogic)
         {
             var menu = new ConsoleMenu()
-                .Add(">> CHANGE BOOK'S LANGUAGE", () => this.ChangeBookLanguage(libraryLogic))
-                .Add(">> CHANGE BOOK'S PUBLISHER", () => this.ChangeBookPublisher(libraryLogic))
-                .Add(">> CHANGE BOOK'S PUBLISHING YEAR", () => this.ChangeBookYear(libraryLogic))
+                .Add(">> CHANGE BOOK'S LANGUAGE", () => ChangeBookLanguage(libraryLogic))
+                .Add(">> CHANGE BOOK'S PUBLISHER", () => ChangeBookPublisher(libraryLogic))
+                .Add(">> CHANGE BOOK'S PUBLISHING YEAR", () => ChangeBookYear(libraryLogic))
                 .Add(">> RETURN", ConsoleMenu.Close);
 
             menu.Show();
         }
 
-        private void ChangeBookLanguage(ILibraryLogic libraryLogic)
+        private static void ChangeBookLanguage(ILibraryLogic libraryLogic)
         {
             Console.Write("The book's ISBN number:" + ' ');
             string isbn = Console.ReadLine();
@@ -147,7 +226,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeBookPublisher(ILibraryLogic libraryLogic)
+        private static void ChangeBookPublisher(ILibraryLogic libraryLogic)
         {
             Console.Write("The book's ISBN number:" + ' ');
             string isbn = Console.ReadLine();
@@ -160,12 +239,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeBookYear(ILibraryLogic libraryLogic)
+        private static void ChangeBookYear(ILibraryLogic libraryLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The book's ISBN number:" + ' ');
             string isbn = Console.ReadLine();
             Console.Write("The book's new publishing year:" + ' ');
-            int year = int.Parse(Console.ReadLine());
+            int year = int.Parse(Console.ReadLine(), ci);
 
             libraryLogic.ChangeBookYear(isbn, year);
 
@@ -173,19 +254,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        public void WorkerMenu(IPersonLogic personLogic)
-        {
-            var menu = new ConsoleMenu()
-                .Add(">> LIST ALL WORKERS", () => this.ListAllWorkers(personLogic))
-                .Add(">> ADD A NEW WORKER", () => this.AddNewWorker(personLogic))
-                .Add(">> DELETE A WORKER", () => this.DeleteWorker(personLogic))
-                .Add(">> MODIFY A WORKER", () => this.ModifyWorker(personLogic))
-                .Add(">> RETURN", ConsoleMenu.Close);
-
-            menu.Show();
-        }
-
-        private void ListAllWorkers(IPersonLogic personLogic)
+        private static void ListAllWorkers(IPersonLogic personLogic)
         {
             Console.WriteLine(Worker.ColumnInfo());
             personLogic.GetAllWorkers().ToList().ForEach(x => Console.WriteLine(x.ToString()));
@@ -193,8 +262,10 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewWorker(IPersonLogic personLogic)
+        private static void AddNewWorker(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the details of the new worker." + ' ');
             Console.Write("Worker's name:" + ' ');
             string name = Console.ReadLine();
@@ -203,13 +274,13 @@ namespace MyLibrary.Program
             Console.Write("\nWorker's address:" + ' ');
             string address = Console.ReadLine();
             Console.Write("\nWorker's birth date:" + ' ');
-            DateTime birthDate = DateTime.Parse(Console.ReadLine());
+            DateTime birthDate = DateTime.Parse(Console.ReadLine(), ci);
             Console.Write("\nWorker's gender" + ' ');
             char gender = char.Parse(Console.ReadLine());
             Console.Write("\nWorker's salary:" + ' ');
-            int salary = int.Parse(Console.ReadLine());
+            int salary = int.Parse(Console.ReadLine(), ci);
             Console.Write("\nHire date:" + ' ');
-            DateTime hireDate = DateTime.Parse(Console.ReadLine());
+            DateTime hireDate = DateTime.Parse(Console.ReadLine(), ci);
 
             Worker w = new Worker()
             {
@@ -228,11 +299,13 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteWorker(IPersonLogic personLogic)
+        private static void DeleteWorker(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the worker's id." + ' ');
             Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
 
             personLogic.DeleteWorker(id);
 
@@ -240,22 +313,24 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ModifyWorker(IPersonLogic personLogic)
+        private static void ModifyWorker(IPersonLogic personLogic)
         {
                 var menu = new ConsoleMenu()
-                    .Add(">> CHANGE WORKER'S ADDRESS", () => this.ChangeWorkerAddress(personLogic))
-                    .Add(">> CHANGE WORKER'S EMAIL", () => this.ChangeWorkerEmail(personLogic))
-                    .Add(">> CHANGE WORKER'S NAME", () => this.ChangeWorkerName(personLogic))
-                    .Add(">> CHANGE WORKER'S SALARY", () => this.ChangeWorkerSalary(personLogic))
+                    .Add(">> CHANGE WORKER'S ADDRESS", () => ChangeWorkerAddress(personLogic))
+                    .Add(">> CHANGE WORKER'S EMAIL", () => ChangeWorkerEmail(personLogic))
+                    .Add(">> CHANGE WORKER'S NAME", () => ChangeWorkerName(personLogic))
+                    .Add(">> CHANGE WORKER'S SALARY", () => ChangeWorkerSalary(personLogic))
                     .Add(">> RETURN", ConsoleMenu.Close);
 
                 menu.Show();
         }
 
-        private void ChangeWorkerAddress(IPersonLogic personLogic)
+        private static void ChangeWorkerAddress(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The worker's new address:" + ' ');
             string address = Console.ReadLine();
 
@@ -265,10 +340,12 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeWorkerEmail(IPersonLogic personLogic)
+        private static void ChangeWorkerEmail(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The worker's new email:" + ' ');
             string email = Console.ReadLine();
 
@@ -278,10 +355,12 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeWorkerName(IPersonLogic personLogic)
+        private static void ChangeWorkerName(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The worker's new name:" + ' ');
             string name = Console.ReadLine();
 
@@ -291,12 +370,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeWorkerSalary(IPersonLogic personLogic)
+        private static void ChangeWorkerSalary(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The worker's new salary:" + ' ');
-            int salary = int.Parse(Console.ReadLine());
+            int salary = int.Parse(Console.ReadLine(), ci);
 
             personLogic.ChangeWorkerSalary(id, salary);
 
@@ -304,19 +385,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        public void RenterMenu(IPersonLogic personLogic)
-        {
-            var menu = new ConsoleMenu()
-                .Add(">> LIST ALL RENTERS", () => this.ListAllRenters(personLogic))
-                .Add(">> ADD A NEW RENTER", () => this.AddNewRenter(personLogic))
-                .Add(">> DELETE A RENTER", () => this.DeleteRenter(personLogic))
-                .Add(">> MODIFY A RENTER", () => this.ModifyRenter(personLogic))
-                .Add(">> RETURN", ConsoleMenu.Close);
-
-            menu.Show();
-        }
-
-        private void ListAllRenters(IPersonLogic personLogic)
+        private static void ListAllRenters(IPersonLogic personLogic)
         {
             Console.WriteLine(Renter.ColumnInfo());
             personLogic.GetAllRenters().ToList().ForEach(x => Console.WriteLine(x.ToString()));
@@ -324,8 +393,10 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewRenter(IPersonLogic personLogic)
+        private static void AddNewRenter(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the details of the new renter." + ' ');
             Console.Write("Renter's name:" + ' ');
             string name = Console.ReadLine();
@@ -334,7 +405,7 @@ namespace MyLibrary.Program
             Console.Write("\nRenter's address:" + ' ');
             string address = Console.ReadLine();
             Console.Write("\nDate of joining:" + ' ');
-            DateTime joinDate = DateTime.Parse(Console.ReadLine());
+            DateTime joinDate = DateTime.Parse(Console.ReadLine(), ci);
             Console.Write("\nType of membership:" + ' ');
             string membershipType = Console.ReadLine();
 
@@ -353,11 +424,13 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteRenter(IPersonLogic personLogic)
+        private static void DeleteRenter(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the renter's id." + ' ');
             Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
 
             personLogic.DeleteRenter(id);
 
@@ -365,22 +438,24 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ModifyRenter(IPersonLogic personLogic)
+        private static void ModifyRenter(IPersonLogic personLogic)
         {
             var menu = new ConsoleMenu()
-                .Add(">> CHANGE RENTER'S ADDRESS", () => this.ChangeRenterAddress(personLogic))
-                .Add(">> CHANGE RENTER'S EMAIL", () => this.ChangeRenterEmail(personLogic))
-                .Add(">> CHANGE RENTER'S NAME", () => this.ChangeRenterName(personLogic))
-                .Add(">> CHANGE RENTER'S TYPE OF MEMBERSHIP", () => this.ChangeRenterMembershipType(personLogic))
+                .Add(">> CHANGE RENTER'S ADDRESS", () => ChangeRenterAddress(personLogic))
+                .Add(">> CHANGE RENTER'S EMAIL", () => ChangeRenterEmail(personLogic))
+                .Add(">> CHANGE RENTER'S NAME", () => ChangeRenterName(personLogic))
+                .Add(">> CHANGE RENTER'S TYPE OF MEMBERSHIP", () => ChangeRenterMembershipType(personLogic))
                 .Add(">> RETURN", ConsoleMenu.Close);
 
             menu.Show();
         }
 
-        private void ChangeRenterAddress(IPersonLogic personLogic)
+        private static void ChangeRenterAddress(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The renter's new address:" + ' ');
             string address = Console.ReadLine();
 
@@ -390,10 +465,12 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeRenterEmail(IPersonLogic personLogic)
+        private static void ChangeRenterEmail(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The renter's new email:" + ' ');
             string email = Console.ReadLine();
 
@@ -403,10 +480,12 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeRenterName(IPersonLogic personLogic)
+        private static void ChangeRenterName(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The renter's new name:" + ' ');
             string name = Console.ReadLine();
 
@@ -416,10 +495,12 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ChangeRenterMembershipType(IPersonLogic personLogic)
+        private static void ChangeRenterMembershipType(IPersonLogic personLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The renter's new type of membership:" + ' ');
             string membershipType = Console.ReadLine();
 
@@ -429,19 +510,7 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        public void RentalMenu(ILibraryLogic libraryLogic)
-        {
-            var menu = new ConsoleMenu()
-                .Add(">> LIST ALL BOOK RENTALS", () => this.ListAllRentals(libraryLogic))
-                .Add(">> ADD A BOOK RENTAL", () => this.AddNewRental(libraryLogic))
-                .Add(">> DELETE A BOOK RENTAL", () => this.DeleteRental(libraryLogic))
-                .Add(">> MODIFY A BOOK RENTAL'S NUMBER OF DAYS", () => this.ModifyRentalDays(libraryLogic))
-                .Add(">> RETURN", ConsoleMenu.Close);
-
-            menu.Show();
-        }
-
-        private void ListAllRentals(ILibraryLogic libraryLogic)
+        private static void ListAllRentals(ILibraryLogic libraryLogic)
         {
             Console.WriteLine(BookRental.ColumnInfo());
             libraryLogic.GetAllBookRentals().ToList().ForEach(x => Console.WriteLine(x.ToString()));
@@ -449,19 +518,21 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void AddNewRental(ILibraryLogic libraryLogic)
+        private static void AddNewRental(ILibraryLogic libraryLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the details of the new book rental." + ' ');
             Console.Write("Book's ISBN number:" + ' ');
             string isbn = Console.ReadLine();
             Console.Write("Renter's ID:" + ' ');
-            int renterId = int.Parse(Console.ReadLine());
+            int renterId = int.Parse(Console.ReadLine(), ci);
             Console.Write("Worker's ID:" + ' ');
-            int workerId = int.Parse(Console.ReadLine());
+            int workerId = int.Parse(Console.ReadLine(), ci);
             Console.Write("The date of the rantal:" + ' ');
-            DateTime date = DateTime.Parse(Console.ReadLine());
+            DateTime date = DateTime.Parse(Console.ReadLine(), ci);
             Console.Write("Days:" + ' ');
-            int days = int.Parse(Console.ReadLine());
+            int days = int.Parse(Console.ReadLine(), ci);
 
             BookRental br = new BookRental()
             {
@@ -478,11 +549,13 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void DeleteRental(ILibraryLogic libraryLogic)
+        private static void DeleteRental(ILibraryLogic libraryLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.WriteLine("Please enter the rental's id." + ' ');
             Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
 
             libraryLogic.DeleteRental(id);
 
@@ -490,12 +563,14 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private void ModifyRentalDays(ILibraryLogic libraryLogic)
+        private static void ModifyRentalDays(ILibraryLogic libraryLogic)
         {
+            CultureInfo ci = CultureInfo.CurrentCulture;
+
             Console.Write("The rental's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine(), ci);
             Console.Write("The rental's new number of days:" + ' ');
-            int days = int.Parse(Console.ReadLine());
+            int days = int.Parse(Console.ReadLine(), ci);
 
             libraryLogic.ChangeBookRentalDays(id, days);
 

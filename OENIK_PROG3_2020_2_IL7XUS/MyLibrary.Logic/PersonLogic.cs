@@ -129,11 +129,19 @@ namespace MyLibrary.Logic
             this.workerRepository.ChangeSalary(id, newSalary);
         }
 
+        /// <summary>
+        /// Deletes a Renter instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The renter's ID.</param>
         public void DeleteRenter(int id)
         {
             this.renterRepository.DeleteOld(id);
         }
 
+        /// <summary>
+        /// Deletes a Worker instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The worker's ID.</param>
         public void DeleteWorker(int id)
         {
             this.workerRepository.DeleteOld(id);

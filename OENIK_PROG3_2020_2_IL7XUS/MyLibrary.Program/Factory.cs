@@ -12,7 +12,7 @@ namespace MyLibrary.Program
     using MyLibrary.Repository;
 
     /// <summary>
-    /// The factory class of the DbContext, Repositories and Logics.
+    /// The factory class of the DbContext, Repository and the Logic classes.
     /// </summary>
     public class Factory
     {
@@ -28,7 +28,6 @@ namespace MyLibrary.Program
             this.BookRentalRepository = new BookRentalRepository(this.LibraryContext);
             this.LibraryLogic = new LibraryLogic(this.BookRepository, this.BookRentalRepository);
             this.PersonLogic = new PersonLogic(this.RenterRepository, this.WorkerRepository);
-            this.Menu = new Menu();
         }
 
         /// <summary>
@@ -65,7 +64,5 @@ namespace MyLibrary.Program
         /// Gets the WorkerRepository's and the RenterRepository's logic.
         /// </summary>
         public PersonLogic PersonLogic { get; }
-
-        public Menu Menu { get; }
     }
 }

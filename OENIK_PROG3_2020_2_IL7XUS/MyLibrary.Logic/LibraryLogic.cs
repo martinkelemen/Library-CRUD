@@ -88,11 +88,19 @@ namespace MyLibrary.Logic
             this.bookRepository.ChangeYear(id, newYear);
         }
 
-        public void DeleteBook(string isbn)
+        /// <summary>
+        /// Deletes a Book instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The book's ID.</param>
+        public void DeleteBook(string id)
         {
-            this.bookRepository.DeleteOld(isbn);
+            this.bookRepository.DeleteOld(id);
         }
 
+        /// <summary>
+        /// Deletes a BookRental instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The rental's ID.</param>
         public void DeleteRental(int id)
         {
             this.bookRentalRepository.DeleteOld(id);

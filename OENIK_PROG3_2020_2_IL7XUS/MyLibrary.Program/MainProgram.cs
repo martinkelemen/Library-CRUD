@@ -26,13 +26,13 @@ namespace MyLibrary.Program
             Console.WindowHeight = 25;
 
             var menu = new ConsoleMenu()
-                .Add(">>BOOKS", () => factory.Menu.BookMenu(factory.LibraryLogic))
-                .Add(">>WORKERS", () => factory.Menu.WorkerMenu(factory.PersonLogic))
-                .Add(">>RENTERS", () => factory.Menu.RenterMenu(factory.PersonLogic))
-                .Add(">>BOOK RENTALS", () => factory.Menu.RentalMenu(factory.LibraryLogic))
-                .Add(">>GROUP BY LANGUAGES WITH AVERAGES OF THE NUMBER OF RENTAL DAYS", () => factory.Menu.GroupByLanguages(factory.LibraryLogic))
-                .Add(">>GROUP BY MEMBERSHIP TYPES AND COUNT THEM", () => factory.Menu.GroupByMembershipType(factory.LibraryLogic))
-                .Add(">>LIST RENTALS WITH ALL NAMES", () => factory.Menu.ListAllRentsWithNames(factory.LibraryLogic))
+                .Add(">>BOOKS", () => Menu.BookMenu(factory.LibraryLogic))
+                .Add(">>WORKERS", () => Menu.WorkerMenu(factory.PersonLogic))
+                .Add(">>RENTERS", () => Menu.RenterMenu(factory.PersonLogic))
+                .Add(">>BOOK RENTALS", () => Menu.RentalMenu(factory.LibraryLogic))
+                .Add(">>GROUP BY LANGUAGES WITH AVERAGES OF THE NUMBER OF RENTAL DAYS", () => Menu.GroupByLanguages(factory.LibraryLogic))
+                .Add(">>GROUP BY MEMBERSHIP TYPES AND COUNT THEM", () => Menu.GroupByMembershipType(factory.LibraryLogic))
+                .Add(">>LIST RENTALS WITH ALL NAMES", () => Menu.ListAllRentsWithNames(factory.LibraryLogic))
                 .Add(">> EXIT", ConsoleMenu.Close);
 
             menu.Show();

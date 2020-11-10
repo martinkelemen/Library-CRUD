@@ -54,8 +54,16 @@ namespace MyLibrary.Logic
         /// <param name="rentalInstance">The instance of the new rental.</param>
         void AddRental(BookRental rentalInstance);
 
-        void DeleteBook(string ISBN);
+        /// <summary>
+        /// Deletes a Book instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The book's ID.</param>
+        void DeleteBook(string id);
 
+        /// <summary>
+        /// Deletes a BookRental instance from the table by ID.
+        /// </summary>
+        /// <param name="id">The rental's ID.</param>
         void DeleteRental(int id);
 
         /// <summary>
