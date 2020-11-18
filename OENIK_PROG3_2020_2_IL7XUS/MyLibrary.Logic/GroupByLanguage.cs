@@ -31,5 +31,21 @@ namespace MyLibrary.Logic
         {
             return $"A book with {this.Language} language was rented {this.Average} days on average.";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is GroupByLanguage)
+            {
+                return (obj as GroupByLanguage).Average == this.Average &&
+                    (obj as GroupByLanguage).Language == this.Language;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

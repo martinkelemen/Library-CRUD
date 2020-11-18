@@ -60,5 +60,23 @@ namespace MyLibrary.Logic
         {
             return $"{this.RentId} - {this.BookName} - {this.RenterName} - {this.WorkerName} - {this.RentDate.ToShortDateString()} - {this.Days}";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is RentalWithNames)
+            {
+                return (obj as RentalWithNames).RentId == this.RentId &&
+                    (obj as RentalWithNames).WorkerName == this.WorkerName &&
+                    (obj as RentalWithNames).RenterName == this.RenterName &&
+                    (obj as RentalWithNames).BookName == this.BookName;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

@@ -92,5 +92,20 @@ namespace MyLibrary.Data
         {
             return $"{this.WorkerId} - {this.Name} - {this.BirthDate.ToShortDateString()} - {this.Gender} - {this.Address} - {this.Email} - {this.Salary} - {this.HireDate.ToShortDateString()}";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Worker)
+            {
+                return (obj as Worker).WorkerId == this.WorkerId;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

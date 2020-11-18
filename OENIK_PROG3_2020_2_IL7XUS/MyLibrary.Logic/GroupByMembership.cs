@@ -31,5 +31,21 @@ namespace MyLibrary.Logic
         {
             return $"{this.MembershipType} members {this.Count} times rented a book.";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is GroupByMembership)
+            {
+                return (obj as GroupByMembership).Count == this.Count &&
+                    (obj as GroupByMembership).MembershipType == this.MembershipType;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }
