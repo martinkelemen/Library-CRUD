@@ -44,7 +44,15 @@ namespace MyLibrary.Repository
         /// <returns>A Book instance.</returns>
         public override BookRental GetOne(int id)
         {
-            return this.GetAll().SingleOrDefault(x => x.RentalId == id);
+            var set = this.GetAll();
+            if (id < 0 || id > set.Count())
+            {
+                throw new IDOutOfRangeException("There is no such ID in this table.");
+            }
+            else
+            {
+                return set.SingleOrDefault(x => x.RentalId == id);
+            }
         }
     }
 }

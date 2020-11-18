@@ -12,6 +12,7 @@ namespace MyLibrary.Program
     using ConsoleTools;
     using MyLibrary.Data;
     using MyLibrary.Logic;
+    using MyLibrary.Repository;
 
     /// <summary>
     /// The class for the program's menu options.
@@ -131,11 +132,12 @@ namespace MyLibrary.Program
         /// Lists the options of the rentals' collection.
         /// </summary>
         /// <param name="libraryLogic">The logic class of the library.</param>
-        public static void RentalMenu(ILibraryLogic libraryLogic)
+        /// <param name="personLogic">The logic class of the people.</param>
+        public static void RentalMenu(ILibraryLogic libraryLogic, IPersonLogic personLogic)
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOK RENTALS", () => ListAllRentals(libraryLogic))
-                .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic))
+                .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic, personLogic))
                 .Add(">> DELETE A BOOK RENTAL", () => DeleteRental(libraryLogic))
                 .Add(">> MODIFY A BOOK RENTAL'S NUMBER OF DAYS", () => ModifyRentalDays(libraryLogic))
                 .Add(">> RETURN", ConsoleMenu.Close);
@@ -153,39 +155,64 @@ namespace MyLibrary.Program
 
         private static void AddNewBook(ILibraryLogic libraryLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
 
-            Console.WriteLine("Please enter the details of the new book." + ' ');
-            Console.Write("ISBN number:" + ' ');
-            string isbn = Console.ReadLine();
-            Console.Write("\nTitle:" + ' ');
-            string title = Console.ReadLine();
-            Console.Write("\nAuthor's name:" + ' ');
-            string authorName = Console.ReadLine();
-            Console.Write("\nThe year of publishing:" + ' ');
-            int year = int.Parse(Console.ReadLine(), ci);
-            Console.Write("\nLanguage:" + ' ');
-            string language = Console.ReadLine();
-            Console.Write("\nCategory:" + ' ');
-            string category = Console.ReadLine();
-            Console.Write("\nNumber of pages:" + ' ');
-            int pages = int.Parse(Console.ReadLine(), ci);
-            Console.Write("\nPublisher's name:" + ' ');
-            string publisher = Console.ReadLine();
-
-            Book b = new Book()
+            try
             {
-                ISBN = isbn,
-                Title = title,
-                AuthorName = authorName,
-                Year = year,
-                Language = language,
-                Category = category,
-                PageNumber = pages,
-                Publisher = publisher,
-            };
+                Console.WriteLine("Please enter the details of the new book." + ' ');
+                Console.Write("ISBN number:" + ' ');
+                string isbn = Console.ReadLine();
+                Console.Write("\nTitle:" + ' ');
+                string title = Console.ReadLine();
+                Console.Write("\nAuthor's name:" + ' ');
+                string authorName = Console.ReadLine();
+                int year;
+                do
+                {
+                    Console.Write("\nThe year of publishing:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out year);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                }
+                while (!success);
+                Console.Write("\nLanguage:" + ' ');
+                string language = Console.ReadLine();
+                Console.Write("\nCategory:" + ' ');
+                string category = Console.ReadLine();
+                int pages;
+                do
+                {
+                    Console.Write("\nNumber of pages:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out pages);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                }
+                while (!success);
+                Console.Write("\nPublisher's name:" + ' ');
+                string publisher = Console.ReadLine();
 
-            libraryLogic.AddBook(b);
+                Book b = new Book()
+                {
+                    ISBN = isbn,
+                    Title = title,
+                    AuthorName = authorName,
+                    Year = year,
+                    Language = language,
+                    Category = category,
+                    PageNumber = pages,
+                    Publisher = publisher,
+                };
+
+                libraryLogic.AddBook(b);
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("There is already a book with this ID in the table." + ' ');
+            }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -193,11 +220,18 @@ namespace MyLibrary.Program
 
         private static void DeleteBook(ILibraryLogic libraryLogic)
         {
-            Console.WriteLine("Please enter the ISBN number of the book." + ' ');
-            Console.Write("ISBN: " + ' ');
-            string isbn = Console.ReadLine();
+            try
+            {
+                Console.WriteLine("Please enter the ISBN number of the book." + ' ');
+                Console.Write("ISBN: " + ' ');
+                string isbn = Console.ReadLine();
 
-            libraryLogic.DeleteBook(isbn);
+                libraryLogic.DeleteBook(isbn);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("There is no book with this ISBN number." + ' ');
+            }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -216,24 +250,39 @@ namespace MyLibrary.Program
 
         private static void ChangeBookLanguage(ILibraryLogic libraryLogic)
         {
-            Console.Write("The book's ISBN number:" + ' ');
-            string isbn = Console.ReadLine();
-            Console.Write("The book's new language:" + ' ');
-            string language = Console.ReadLine();
+            try
+            {
+                Console.Write("The book's ISBN number:" + ' ');
+                string isbn = Console.ReadLine();
+                Console.Write("The book's new language:" + ' ');
+                string language = Console.ReadLine();
 
-            libraryLogic.ChangeBookLanguage(isbn, language);
+                libraryLogic.ChangeBookLanguage(isbn, language);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("There is no book with this ISBN number." + ' ');
+            }
+
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
 
         private static void ChangeBookPublisher(ILibraryLogic libraryLogic)
         {
-            Console.Write("The book's ISBN number:" + ' ');
-            string isbn = Console.ReadLine();
-            Console.Write("The book's new publisher:" + ' ');
-            string publisher = Console.ReadLine();
+            try
+            {
+                Console.Write("The book's ISBN number:" + ' ');
+                string isbn = Console.ReadLine();
+                Console.Write("The book's new publisher:" + ' ');
+                string publisher = Console.ReadLine();
 
-            libraryLogic.ChangeBookPublisher(isbn, publisher);
+                libraryLogic.ChangeBookPublisher(isbn, publisher);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("There is no book with this ISBN number." + ' ');
+            }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -242,13 +291,19 @@ namespace MyLibrary.Program
         private static void ChangeBookYear(ILibraryLogic libraryLogic)
         {
             CultureInfo ci = CultureInfo.CurrentCulture;
+            try
+            {
+                Console.Write("The book's ISBN number:" + ' ');
+                string isbn = Console.ReadLine();
+                Console.Write("The book's new publishing year:" + ' ');
+                int year = int.Parse(Console.ReadLine(), ci);
 
-            Console.Write("The book's ISBN number:" + ' ');
-            string isbn = Console.ReadLine();
-            Console.Write("The book's new publishing year:" + ' ');
-            int year = int.Parse(Console.ReadLine(), ci);
-
-            libraryLogic.ChangeBookYear(isbn, year);
+                libraryLogic.ChangeBookYear(isbn, year);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("There is no book with this ISBN number." + ' ');
+            }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -264,7 +319,7 @@ namespace MyLibrary.Program
 
         private static void AddNewWorker(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
 
             Console.WriteLine("Please enter the details of the new worker." + ' ');
             Console.Write("Worker's name:" + ' ');
@@ -273,14 +328,50 @@ namespace MyLibrary.Program
             string email = Console.ReadLine();
             Console.Write("\nWorker's address:" + ' ');
             string address = Console.ReadLine();
-            Console.Write("\nWorker's birth date:" + ' ');
-            DateTime birthDate = DateTime.Parse(Console.ReadLine(), ci);
-            Console.Write("\nWorker's gender" + ' ');
-            char gender = char.Parse(Console.ReadLine());
-            Console.Write("\nWorker's salary:" + ' ');
-            int salary = int.Parse(Console.ReadLine(), ci);
-            Console.Write("\nHire date:" + ' ');
-            DateTime hireDate = DateTime.Parse(Console.ReadLine(), ci);
+            DateTime birthDate;
+            do
+            {
+                Console.Write("\nWorker's birth date(Year, Month, Day):" + ' ');
+                success = DateTime.TryParse(Console.ReadLine(), out birthDate);
+                if (!success)
+                {
+                    Console.WriteLine("Wrong format." + ' ');
+                }
+            }
+            while (!success);
+            char gender;
+            do
+            {
+                Console.Write("\nWorker's gender(M or F)" + ' ');
+                success = char.TryParse(Console.ReadLine(), out gender);
+                if (!success)
+                {
+                    Console.WriteLine("This is not a character." + ' ');
+                }
+            }
+            while (!success || gender != 'F' || gender != 'M');
+            int salary;
+            do
+            {
+                Console.Write("\nWorker's salary:" + ' ');
+                success = int.TryParse(Console.ReadLine(), out salary);
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+            }
+            while (!success);
+            DateTime hireDate;
+            do
+            {
+                Console.Write("\nHire date:" + ' ');
+                success = DateTime.TryParse(Console.ReadLine(), out hireDate);
+                if (!success)
+                {
+                    Console.WriteLine("Wrong format." + ' ');
+                }
+            }
+            while (!success);
 
             Worker w = new Worker()
             {
@@ -303,11 +394,18 @@ namespace MyLibrary.Program
         {
             CultureInfo ci = CultureInfo.CurrentCulture;
 
-            Console.WriteLine("Please enter the worker's id." + ' ');
-            Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
+            try
+            {
+                Console.WriteLine("Please enter the worker's id." + ' ');
+                Console.Write("ID: " + ' ');
+                int id = int.Parse(Console.ReadLine(), ci);
 
-            personLogic.DeleteWorker(id);
+                personLogic.DeleteWorker(id);
+            }
+            catch (IDOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -327,29 +425,66 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerAddress(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
+            do
+            {
+                try
+                {
+                    Console.Write("The worker's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The worker's new address:" + ' ');
+                        string address = Console.ReadLine();
 
-            Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The worker's new address:" + ' ');
-            string address = Console.ReadLine();
-
-            personLogic.ChangeWorkerAddress(id, address);
-
+                        personLogic.ChangeWorkerAddress(id, address);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
         }
 
         private static void ChangeWorkerEmail(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
+            do
+            {
+                try
+                {
+                    Console.Write("The worker's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The worker's new email:" + ' ');
+                        string email = Console.ReadLine();
 
-            Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The worker's new email:" + ' ');
-            string email = Console.ReadLine();
-
-            personLogic.ChangeWorkerEmail(id, email);
+                        personLogic.ChangeWorkerEmail(id, email);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -357,14 +492,34 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerName(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The worker's new name:" + ' ');
-            string name = Console.ReadLine();
+            do
+            {
+                try
+                {
+                    Console.Write("The worker's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The worker's new name:" + ' ');
+                        string name = Console.ReadLine();
 
-            personLogic.ChangeWorkerName(id, name);
+                        personLogic.ChangeWorkerName(id, name);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -372,14 +527,41 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerSalary(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
+            int salary;
 
-            Console.Write("The worker's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The worker's new salary:" + ' ');
-            int salary = int.Parse(Console.ReadLine(), ci);
-
-            personLogic.ChangeWorkerSalary(id, salary);
+            do
+            {
+                try
+                {
+                    Console.Write("The worker's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The worker's new salary:" + ' ');
+                        success = int.TryParse(Console.ReadLine(), out salary);
+                        if (!success)
+                        {
+                            Console.WriteLine("This is not a number." + ' ');
+                        }
+                        else
+                        {
+                            personLogic.ChangeWorkerSalary(id, salary);
+                        }
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -395,7 +577,7 @@ namespace MyLibrary.Program
 
         private static void AddNewRenter(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
 
             Console.WriteLine("Please enter the details of the new renter." + ' ');
             Console.Write("Renter's name:" + ' ');
@@ -404,8 +586,17 @@ namespace MyLibrary.Program
             string email = Console.ReadLine();
             Console.Write("\nRenter's address:" + ' ');
             string address = Console.ReadLine();
-            Console.Write("\nDate of joining:" + ' ');
-            DateTime joinDate = DateTime.Parse(Console.ReadLine(), ci);
+            DateTime joinDate;
+            do
+            {
+                Console.Write("\nDate of joining(Year, Month, Day):" + ' ');
+                success = DateTime.TryParse(Console.ReadLine(), out joinDate);
+                if (!success)
+                {
+                    Console.WriteLine("Wrong format." + ' ');
+                }
+            }
+            while (!success);
             Console.Write("\nType of membership:" + ' ');
             string membershipType = Console.ReadLine();
 
@@ -426,13 +617,32 @@ namespace MyLibrary.Program
 
         private static void DeleteRenter(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.WriteLine("Please enter the renter's id." + ' ');
-            Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-
-            personLogic.DeleteRenter(id);
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter the renter's id." + ' ');
+                    Console.Write("ID: " + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        personLogic.DeleteRenter(id);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -452,14 +662,34 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterAddress(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The renter's new address:" + ' ');
-            string address = Console.ReadLine();
+            do
+            {
+                try
+                {
+                    Console.Write("The renter's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The renter's new address:" + ' ');
+                        string address = Console.ReadLine();
 
-            personLogic.ChangeRenterAddress(id, address);
+                        personLogic.ChangeRenterAddress(id, address);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -467,14 +697,34 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterEmail(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The renter's new email:" + ' ');
-            string email = Console.ReadLine();
+            do
+            {
+                try
+                {
+                    Console.Write("The renter's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The renter's new email:" + ' ');
+                        string email = Console.ReadLine();
 
-            personLogic.ChangeRenterEmail(id, email);
+                        personLogic.ChangeRenterEmail(id, email);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -482,14 +732,34 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterName(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The renter's new name:" + ' ');
-            string name = Console.ReadLine();
+            do
+            {
+                try
+                {
+                    Console.Write("The renter's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The renter's new name:" + ' ');
+                        string name = Console.ReadLine();
 
-            personLogic.ChangeRenterName(id, name);
+                        personLogic.ChangeRenterName(id, name);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -497,14 +767,33 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterMembershipType(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.Write("The renter's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The renter's new type of membership:" + ' ');
-            string membershipType = Console.ReadLine();
-
-            personLogic.ChangeRenterMembershipType(id, membershipType);
+            do
+            {
+                try
+                {
+                    Console.Write("The renter's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The renter's new type of membership:" + ' ');
+                        string membershipType = Console.ReadLine();
+                        personLogic.ChangeRenterMembershipType(id, membershipType);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -518,22 +807,96 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private static void AddNewRental(ILibraryLogic libraryLogic)
+        private static void AddNewRental(ILibraryLogic libraryLogic, IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
 
             Console.WriteLine("Please enter the details of the new book rental." + ' ');
-            Console.Write("Book's ISBN number:" + ' ');
-            string isbn = Console.ReadLine();
-            Console.Write("Renter's ID:" + ' ');
-            int renterId = int.Parse(Console.ReadLine(), ci);
-            Console.Write("Worker's ID:" + ' ');
-            int workerId = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The date of the rantal:" + ' ');
-            DateTime date = DateTime.Parse(Console.ReadLine(), ci);
-            Console.Write("Days:" + ' ');
-            int days = int.Parse(Console.ReadLine(), ci);
-
+            string isbn = string.Empty;
+            do
+            {
+                try
+                {
+                    Console.Write("Book's ISBN number:" + ' ');
+                    isbn = Console.ReadLine();
+                    Book b = libraryLogic.GetBookById(isbn);
+                    success = true;
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("There is not a book with this ISBN number." + ' ');
+                    success = false;
+                }
+            }
+            while (!success);
+            int renterId = int.MaxValue;
+            do
+            {
+                try
+                {
+                    Console.Write("Renter's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out renterId);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Renter r = personLogic.GetRenterById(renterId);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = false;
+                }
+            }
+            while (!success);
+            int workerId = int.MaxValue;
+            do
+            {
+                try
+                {
+                    Console.Write("Worker's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out workerId);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Worker w = personLogic.GetWorkerById(workerId);
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = false;
+                }
+            }
+            while (!success);
+            DateTime date;
+            do
+            {
+                Console.Write("The date of the rental(Year, Month, Day):" + ' ');
+                success = DateTime.TryParse(Console.ReadLine(), out date);
+                if (!success)
+                {
+                    Console.WriteLine("Wrong format." + ' ');
+                }
+            }
+            while (!success);
+            int days;
+            do
+            {
+                Console.Write("Days:" + ' ');
+                success = int.TryParse(Console.ReadLine(), out days);
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+            }
+            while (!success);
             BookRental br = new BookRental()
             {
                 ISBN = isbn,
@@ -551,13 +914,30 @@ namespace MyLibrary.Program
 
         private static void DeleteRental(ILibraryLogic libraryLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
 
-            Console.WriteLine("Please enter the rental's id." + ' ');
-            Console.Write("ID: " + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter the rental's id." + ' ');
+                    Console.Write("ID: " + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
 
-            libraryLogic.DeleteRental(id);
+                    libraryLogic.DeleteRental(id);
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
@@ -565,14 +945,41 @@ namespace MyLibrary.Program
 
         private static void ModifyRentalDays(ILibraryLogic libraryLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            bool success;
+            int id;
+            int days;
 
-            Console.Write("The rental's ID:" + ' ');
-            int id = int.Parse(Console.ReadLine(), ci);
-            Console.Write("The rental's new number of days:" + ' ');
-            int days = int.Parse(Console.ReadLine(), ci);
-
-            libraryLogic.ChangeBookRentalDays(id, days);
+            do
+            {
+                try
+                {
+                    Console.Write("The rental's ID:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out id);
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
+                    else
+                    {
+                        Console.Write("The rental's new number of days:" + ' ');
+                        success = int.TryParse(Console.ReadLine(), out days);
+                        if (!success)
+                        {
+                            Console.WriteLine("This is not a number." + ' ');
+                        }
+                        else
+                        {
+                            libraryLogic.ChangeBookRentalDays(id, days);
+                        }
+                    }
+                }
+                catch (IDOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
+                    success = true;
+                }
+            }
+            while (!success);
 
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();

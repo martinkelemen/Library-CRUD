@@ -80,7 +80,15 @@ namespace MyLibrary.Repository
         /// <returns>A Renter instance.</returns>
         public override Renter GetOne(int id)
         {
-            return this.GetAll().SingleOrDefault(x => x.RenterId == id);
+            var set = this.GetAll();
+            if (id < 0 || id > set.Count())
+            {
+                throw new IDOutOfRangeException("There is no such ID in this table.");
+            }
+            else
+            {
+                return set.SingleOrDefault(x => x.RenterId == id);
+            }
         }
     }
 }

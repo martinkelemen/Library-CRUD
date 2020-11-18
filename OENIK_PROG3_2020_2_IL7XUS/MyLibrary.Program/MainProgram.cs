@@ -29,7 +29,7 @@ namespace MyLibrary.Program
                 .Add(">>BOOKS", () => Menu.BookMenu(factory.LibraryLogic))
                 .Add(">>WORKERS", () => Menu.WorkerMenu(factory.PersonLogic))
                 .Add(">>RENTERS", () => Menu.RenterMenu(factory.PersonLogic))
-                .Add(">>BOOK RENTALS", () => Menu.RentalMenu(factory.LibraryLogic))
+                .Add(">>BOOK RENTALS", () => Menu.RentalMenu(factory.LibraryLogic, factory.PersonLogic))
                 .Add(">>GROUP BY LANGUAGES WITH AVERAGES OF THE NUMBER OF RENTAL DAYS", () => Menu.GroupByLanguages(factory.LibraryLogic))
                 .Add(">>GROUP BY MEMBERSHIP TYPES AND COUNT THEM", () => Menu.GroupByMembershipType(factory.LibraryLogic))
                 .Add(">>LIST RENTALS WITH ALL NAMES", () => Menu.ListAllRentsWithNames(factory.LibraryLogic))

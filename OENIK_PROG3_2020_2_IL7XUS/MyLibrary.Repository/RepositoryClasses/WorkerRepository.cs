@@ -80,7 +80,15 @@ namespace MyLibrary.Repository
         /// <returns>The worker instance.</returns>
         public override Worker GetOne(int id)
         {
-            return this.GetAll().SingleOrDefault(x => x.WorkerId == id);
+            var set = this.GetAll();
+            if (id < 0 || id > set.Count())
+            {
+                throw new IDOutOfRangeException("There is no such ID in this table.");
+            }
+            else
+            {
+                return set.SingleOrDefault(x => x.WorkerId == id);
+            }
         }
     }
 }
