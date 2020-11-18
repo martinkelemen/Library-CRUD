@@ -172,7 +172,7 @@ namespace MyLibrary.Logic
         /// <returns>Renter instance.</returns>
         public Renter GetRenterById(int id)
         {
-            throw new NotImplementedException();
+            return this.renterRepository.GetOne(id);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace MyLibrary.Logic
         /// <returns>Worker instance.</returns>
         public Worker GetWorkerById(int id)
         {
-            throw new NotImplementedException();
+            return this.workerRepository.GetOne(id);
         }
     }
 }

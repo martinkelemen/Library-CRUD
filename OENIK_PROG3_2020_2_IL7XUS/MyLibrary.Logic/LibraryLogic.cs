@@ -129,9 +129,9 @@ namespace MyLibrary.Logic
         /// </summary>
         /// <param name="id">The id of the Book instance.</param>
         /// <returns>The Book instance.</returns>
-        public Book GetBookById(int id)
+        public Book GetBookById(string id)
         {
-            throw new NotImplementedException();
+            return this.bookRepository.GetOne(id);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace MyLibrary.Logic
         /// <returns>The BookRental instance.</returns>
         public BookRental GetBookRentalById(int id)
         {
-            throw new NotImplementedException();
+            return this.bookRentalRepository.GetOne(id);
         }
 
         /// <summary>

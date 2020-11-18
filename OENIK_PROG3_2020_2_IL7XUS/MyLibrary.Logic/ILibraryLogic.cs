@@ -21,7 +21,7 @@ namespace MyLibrary.Logic
         /// </summary>
         /// <param name="id">The id of the Book instance.</param>
         /// <returns>The Book instance.</returns>
-        Book GetBookById(int id);
+        Book GetBookById(string id);
 
         /// <summary>
         /// Gives back a BookRental instance by id.
