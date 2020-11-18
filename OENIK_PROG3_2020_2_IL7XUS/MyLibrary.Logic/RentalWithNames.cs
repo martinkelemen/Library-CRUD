@@ -49,7 +49,7 @@ namespace MyLibrary.Logic
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return "Rental's id - Book's name - Renter's name - Worker's name - Date of rental - Days of rental";
+            return $"{"[ID]",-4} {"[TITLE]",-27} {"[RENTER'S NAME]",-20} {"[WORKER'S NAME]",-20} {"[RENTAL DATE]",-15} {"[DAYS]",-8}";
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MyLibrary.Logic
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.RentId} - {this.BookName} - {this.RenterName} - {this.WorkerName} - {this.RentDate.ToShortDateString()} - {this.Days}";
+            return $"{this.RentId,-4} {this.BookName,-27} {this.RenterName,-20} {this.WorkerName,-20} {this.RentDate.ToShortDateString(),-15} {this.Days,-8}";
         }
 
         public override bool Equals(object obj)

@@ -78,7 +78,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return "ISBN number - Title - AuthorName - Year - Language - Category - PageNumber - Publisher";
+            return $"{"[ISBN NUMBER]",-14} {"[TITLE]",-27} {"[AUTHOR'S NAME]",-15} {"[YEAR]",-8} {"[LANGUAGE]",-12} {"[CATEGORY]",-12} {"[PAGE NUMBER]",-15} {"[PUBLISHER]",-15}";
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.ISBN} - {this.Title} - {this.AuthorName} - {this.Year} - {this.Language} - {this.Category} - {this.PageNumber} - {this.Publisher}";
+            return $"{this.ISBN,-14} {this.Title,-27} {this.AuthorName,-15} {this.Year,-8} {this.Language,-12} {this.Category,-12} {this.PageNumber,-15} {this.Publisher,-15}";
         }
     }
 }

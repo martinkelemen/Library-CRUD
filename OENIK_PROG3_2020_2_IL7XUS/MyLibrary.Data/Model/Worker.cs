@@ -81,7 +81,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return "Id - Name - Birth date - Gender - Address - Email - Salary - Hire date";
+            return $"{"[ID]",-4} {"[NAME]",-20} {"[BIRTH DATE]",-15} {"[GENDER]",-8} {"[ADDRESS]",-40} {"[EMAIL]",-30} {"[SALARY]",-8} {"[HIRE DATE]",-15}";
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.WorkerId} - {this.Name} - {this.BirthDate.ToShortDateString()} - {this.Gender} - {this.Address} - {this.Email} - {this.Salary} - {this.HireDate.ToShortDateString()}";
+            return $"{this.WorkerId,-4} {this.Name,-20} {this.BirthDate.ToShortDateString(),-15} {this.Gender,-8} {this.Address,-40} {this.Email,-30} {this.Salary,-8} {this.HireDate.ToShortDateString(),-15}";
         }
 
         public override bool Equals(object obj)

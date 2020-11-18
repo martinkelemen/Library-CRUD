@@ -87,8 +87,8 @@ namespace MyLibrary.Data
             Book b2 = new Book() { ISBN = "0-9623-2897-9", Title = "The Paris Wife", AuthorName = "Paula McLain", Category = "novel", Language = "English", PageNumber = 352, Year = 2012, Publisher = "Central Publisher" };
             Book b3 = new Book() { ISBN = "0-7170-6711-4", Title = "Terug naar Oegstgeest", AuthorName = "Jan Wolkers", Category = "novel", Language = "Dutch", PageNumber = 236, Year = 1965, Publisher = "JM Meulenhoff" };
             Book b4 = new Book() { ISBN = "0-7963-8082-1", Title = "Sometimes a Great Notion", AuthorName = "Ken Kesey", Category = "novel", Language = "English", PageNumber = 715, Year = 1964, Publisher = "Viking Press" };
-            Book b5 = new Book() { ISBN = "1-4539-2696-7", Title = "The Beautiful Room Is Empty", AuthorName = "Edmund White", Category = "semi-autobiographical novel", Language = "English", PageNumber = 227, Year = 1939, Publisher = "Alfred A. Knopf" };
-            Book b6 = new Book() { ISBN = "1-4748-7967-4", Title = "I, Robot", AuthorName = "Isaac Asimov", Category = "fixup novel", Language = "English", PageNumber = 253, Year = 1950, Publisher = "Gnome Press" };
+            Book b5 = new Book() { ISBN = "1-4539-2696-7", Title = "The Beautiful Room Is Empty", AuthorName = "Edmund White", Category = "novel", Language = "English", PageNumber = 227, Year = 1939, Publisher = "Alfred A. Knopf" };
+            Book b6 = new Book() { ISBN = "1-4748-7967-4", Title = "I, Robot", AuthorName = "Isaac Asimov", Category = "novel", Language = "English", PageNumber = 253, Year = 1950, Publisher = "Gnome Press" };
             Book b7 = new Book() { ISBN = "1-5788-2367-4", Title = "Aranymenes", AuthorName = "Janos Osi", Category = "novel", Language = "Hungarian", PageNumber = 265, Year = 2017, Publisher = "Rezbong Kiado" };
 
             BookRental br0 = new BookRental() { RentalId = 1, RentalDate = new DateTime(2020, 10, 01), Days = 7 };

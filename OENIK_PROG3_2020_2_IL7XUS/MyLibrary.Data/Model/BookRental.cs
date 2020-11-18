@@ -76,7 +76,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return "Rental date - Number of days";
+            return $"{"[ID]",-4} {"[RENTAL DATE]",-16} {"[DAYS]",-8}";
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.RentalDate.ToShortDateString()} - {this.Days}";
+            return $"{this.RentalId,-4} {this.RentalDate.ToShortDateString(),-16} {this.Days,-8}";
         }
     }
 }

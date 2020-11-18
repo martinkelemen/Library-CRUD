@@ -69,7 +69,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return "Id - Name - Address - Email - Type of the membership - Join date";
+            return $"{"[ID]",-4} {"[NAME]",-20} {"[ADDRESS]",-40} {"[EMAIL]",-30} {"[MEMBERSHIP TYPE]",-20} {"[JOIN DATE]",-15}";
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace MyLibrary.Data
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.RenterId} - {this.Name} - {this.Address} - {this.Email} - {this.MembershipType} - {this.JoinDate.ToShortDateString()}";
+            return $"{this.RenterId,-4} {this.Name,-20} {this.Address,-40} {this.Email,-30} {this.MembershipType,-20} {this.JoinDate.ToShortDateString(),-15}";
         }
     }
 }
