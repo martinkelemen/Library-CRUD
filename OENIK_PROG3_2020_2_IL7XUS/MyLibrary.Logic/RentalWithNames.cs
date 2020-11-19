@@ -49,7 +49,7 @@ namespace MyLibrary.Logic
         /// <returns>Returns a string.</returns>
         public static string ColumnInfo()
         {
-            return $"{"[ID]",-4} {"[TITLE]",-27} {"[RENTER'S NAME]",-20} {"[WORKER'S NAME]",-20} {"[RENTAL DATE]",-15} {"[DAYS]",-8}";
+            return $"{"[ID]",-14} {"[TITLE]",-37} {"[RENTER'S NAME]",-30} {"[WORKER'S NAME]",-30} {"[RENTAL DATE]",-25} {"[DAYS]",-8}";
         }
 
         /// <summary>
@@ -58,9 +58,14 @@ namespace MyLibrary.Logic
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"{this.RentId,-4} {this.BookName,-27} {this.RenterName,-20} {this.WorkerName,-20} {this.RentDate.ToShortDateString(),-15} {this.Days,-8}";
+            return $"{this.RentId,-14} {this.BookName,-37} {this.RenterName,-30} {this.WorkerName,-30} {this.RentDate.ToShortDateString(),-25} {this.Days,-8}";
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.
+        /// </summary>
+        /// <param name="obj">An object.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object obj)
         {
             if (obj is RentalWithNames)
@@ -74,6 +79,10 @@ namespace MyLibrary.Logic
             return false;
         }
 
+        /// <summary>
+        /// Gives back the object's hash code.
+        /// </summary>
+        /// <returns>An int.</returns>
         public override int GetHashCode()
         {
             return 0;

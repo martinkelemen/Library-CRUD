@@ -13,9 +13,15 @@ namespace MyLibrary.Logic.Tests
     using MyLibrary.Repository;
     using NUnit.Framework;
 
+    /// <summary>
+    /// The class for the LibraryLogic tests.
+    /// </summary>
     [TestFixture]
     public class LibraryLogicTests
     {
+        /// <summary>
+        /// Tests the LibraryLogic's RemoveBook method.
+        /// </summary>
         [Test]
         public void TestRemoveBook()
         {
@@ -28,6 +34,9 @@ namespace MyLibrary.Logic.Tests
             bookRepository.Verify(repo => repo.DeleteOld("ISBN #2"), Times.Once);
         }
 
+        /// <summary>
+        /// Tests the LibraryLogic's GetAllRentals function.
+        /// </summary>
         [Test]
         public void TestGetAllRentals()
         {
@@ -50,6 +59,9 @@ namespace MyLibrary.Logic.Tests
             rentalRepository.Verify(repo => repo.GetAll(), Times.Once);
         }
 
+        /// <summary>
+        /// Tests the LibraryLogic's GetRentByLanguage function.
+        /// </summary>
         [Test]
         public void TestGetRentByLanguage()
         {
@@ -85,6 +97,9 @@ namespace MyLibrary.Logic.Tests
             bookRepository.Verify(repo => repo.GetAll(), Times.Never);
         }
 
+        /// <summary>
+        /// Tests the LibraryLogic's GetRentByMembership function.
+        /// </summary>
         [Test]
         public void TestGetRentByMembership()
         {
@@ -120,6 +135,9 @@ namespace MyLibrary.Logic.Tests
             bookRepository.Verify(repo => repo.GetAll(), Times.Never);
         }
 
+        /// <summary>
+        /// Tests the LibraryLogic's ListAllRents function.
+        /// </summary>
         [Test]
         public void TestListAllRents()
         {

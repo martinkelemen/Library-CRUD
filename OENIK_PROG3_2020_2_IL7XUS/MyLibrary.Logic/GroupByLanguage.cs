@@ -29,9 +29,14 @@ namespace MyLibrary.Logic
         /// <returns>Returns a string.</returns>
         public override string ToString()
         {
-            return $"A book with {this.Language} language was rented {this.Average} days on average.";
+            return $"A book with {this.Language} language was rented for {this.Average} days on average.";
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.
+        /// </summary>
+        /// <param name="obj">An object.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object obj)
         {
             if (obj is GroupByLanguage)
@@ -43,6 +48,10 @@ namespace MyLibrary.Logic
             return false;
         }
 
+        /// <summary>
+        /// Gives back the object's hash code.
+        /// </summary>
+        /// <returns>An int.</returns>
         public override int GetHashCode()
         {
             return 0;

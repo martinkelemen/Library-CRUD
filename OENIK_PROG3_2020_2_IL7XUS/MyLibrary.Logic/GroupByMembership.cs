@@ -32,6 +32,11 @@ namespace MyLibrary.Logic
             return $"{this.MembershipType} members {this.Count} times rented a book.";
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.
+        /// </summary>
+        /// <param name="obj">An object.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object obj)
         {
             if (obj is GroupByMembership)
@@ -43,6 +48,10 @@ namespace MyLibrary.Logic
             return false;
         }
 
+        /// <summary>
+        /// Gives back the object's hash code.
+        /// </summary>
+        /// <returns>An int.</returns>
         public override int GetHashCode()
         {
             return 0;

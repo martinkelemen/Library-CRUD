@@ -13,9 +13,15 @@ namespace MyLibrary.Logic.Tests
     using MyLibrary.Repository;
     using NUnit.Framework;
 
+    /// <summary>
+    /// The class for the PersonLogic tests.
+    /// </summary>
     [TestFixture]
     public class PersonLogicTests
     {
+        /// <summary>
+        /// Tests the PersonLogic's AddRenter method.
+        /// </summary>
         [Test]
         public void TestAddRenter()
         {
@@ -32,6 +38,9 @@ namespace MyLibrary.Logic.Tests
             renterRepository.Verify(repo => repo.AddNew(r), Times.Once);
         }
 
+        /// <summary>
+        /// Tests the PersonLogic's GetOneWorker function.
+        /// </summary>
         [Test]
         public void TestGetOneWorker()
         {
@@ -55,6 +64,9 @@ namespace MyLibrary.Logic.Tests
             workerRepository.Verify(repo => repo.GetOne(3), Times.Once);
         }
 
+        /// <summary>
+        /// Tests the PersonLogic's ChangeRenterMembershipType method.
+        /// </summary>
         [Test]
         public void TestChangeRenterMembershipType()
         {
