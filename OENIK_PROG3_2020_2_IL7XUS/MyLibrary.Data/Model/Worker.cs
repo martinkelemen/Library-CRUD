@@ -93,6 +93,11 @@ namespace MyLibrary.Data
             return $"{this.WorkerId,-4} {this.Name,-20} {this.BirthDate.ToShortDateString(),-15} {this.Gender,-8} {this.Address,-40} {this.Email,-30} {this.Salary,-8} {this.HireDate.ToShortDateString(),-15}";
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.
+        /// </summary>
+        /// <param name="obj">An object.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object obj)
         {
             if (obj is Worker)
@@ -103,6 +108,10 @@ namespace MyLibrary.Data
             return false;
         }
 
+        /// <summary>
+        /// Gives back the object's hash code.
+        /// </summary>
+        /// <returns>An int.</returns>
         public override int GetHashCode()
         {
             return 0;

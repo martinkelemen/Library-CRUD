@@ -68,7 +68,10 @@ namespace MyLibrary.Program
             if (libraryLogic != null)
             {
                 var rentals = libraryLogic.ListAllRents();
-                Console.WriteLine(RentalWithNames.ColumnInfo());
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("\n" + RentalWithNames.ColumnInfo() + "\n");
+                Console.ForegroundColor = ConsoleColor.White;
 
                 foreach (var rent in rentals)
                 {
@@ -145,12 +148,18 @@ namespace MyLibrary.Program
             menu.Show();
         }
 
-        private static void ListAllBooks(ILibraryLogic libraryLogic)
+        private static void ListAllBooks(ILibraryLogic libraryLogic, bool cnt = true)
         {
-            Console.WriteLine(Book.ColumnInfo());
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n" + Book.ColumnInfo() + "\n");
+            Console.ForegroundColor = ConsoleColor.White;
             libraryLogic.GetAllBooks().ToList().ForEach(x => Console.WriteLine(x.ToString()));
-            Console.WriteLine("\nPress a button to continue." + ' ');
-            Console.ReadKey();
+
+            if (cnt)
+            {
+                Console.WriteLine("\nPress a button to continue." + ' ');
+                Console.ReadKey();
+            }
         }
 
         private static void AddNewBook(ILibraryLogic libraryLogic)
@@ -220,6 +229,9 @@ namespace MyLibrary.Program
 
         private static void DeleteBook(ILibraryLogic libraryLogic)
         {
+            ListAllBooks(libraryLogic, false);
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Please enter the ISBN number of the book." + ' ');
@@ -250,6 +262,9 @@ namespace MyLibrary.Program
 
         private static void ChangeBookLanguage(ILibraryLogic libraryLogic)
         {
+            ListAllBooks(libraryLogic, false);
+            Console.WriteLine();
+
             try
             {
                 Console.Write("The book's ISBN number:" + ' ');
@@ -270,6 +285,9 @@ namespace MyLibrary.Program
 
         private static void ChangeBookPublisher(ILibraryLogic libraryLogic)
         {
+            ListAllBooks(libraryLogic, false);
+            Console.WriteLine();
+
             try
             {
                 Console.Write("The book's ISBN number:" + ' ');
@@ -290,13 +308,22 @@ namespace MyLibrary.Program
 
         private static void ChangeBookYear(ILibraryLogic libraryLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            ListAllBooks(libraryLogic, false);
+            Console.WriteLine();
+
+            bool success;
+            int year;
+
             try
             {
                 Console.Write("The book's ISBN number:" + ' ');
                 string isbn = Console.ReadLine();
-                Console.Write("The book's new publishing year:" + ' ');
-                int year = int.Parse(Console.ReadLine(), ci);
+                do
+                {
+                    Console.Write("The book's new publishing year:" + ' ');
+                    success = int.TryParse(Console.ReadLine(), out year);
+                }
+                while (!success);
 
                 libraryLogic.ChangeBookYear(isbn, year);
             }
@@ -309,12 +336,20 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private static void ListAllWorkers(IPersonLogic personLogic)
+        private static void ListAllWorkers(IPersonLogic personLogic, bool cnt = true)
         {
-            Console.WriteLine(Worker.ColumnInfo());
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n" + Worker.ColumnInfo() + "\n");
+            Console.ForegroundColor = ConsoleColor.White;
             personLogic.GetAllWorkers().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
+
+            if (cnt)
+            {
+                Console.WriteLine("\nPress a button to continue." + ' ');
+                Console.ReadKey();
+            }
         }
 
         private static void AddNewWorker(IPersonLogic personLogic)
@@ -392,15 +427,25 @@ namespace MyLibrary.Program
 
         private static void DeleteWorker(IPersonLogic personLogic)
         {
-            CultureInfo ci = CultureInfo.CurrentCulture;
+            ListAllWorkers(personLogic, false);
+            Console.WriteLine();
+
+            bool success;
+            int id;
 
             try
             {
                 Console.WriteLine("Please enter the worker's id." + ' ');
                 Console.Write("ID: " + ' ');
-                int id = int.Parse(Console.ReadLine(), ci);
-
-                personLogic.DeleteWorker(id);
+                success = int.TryParse(Console.ReadLine(), out id);
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+                else
+                {
+                    personLogic.DeleteWorker(id);
+                }
             }
             catch (IDOutOfRangeException e)
             {
@@ -425,8 +470,12 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerAddress(IPersonLogic personLogic)
         {
+            ListAllWorkers(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
+
             do
             {
                 try
@@ -458,8 +507,12 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerEmail(IPersonLogic personLogic)
         {
+            ListAllWorkers(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
+
             do
             {
                 try
@@ -492,6 +545,9 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerName(IPersonLogic personLogic)
         {
+            ListAllWorkers(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -527,6 +583,9 @@ namespace MyLibrary.Program
 
         private static void ChangeWorkerSalary(IPersonLogic personLogic)
         {
+            ListAllWorkers(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
             int salary;
@@ -567,12 +626,20 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private static void ListAllRenters(IPersonLogic personLogic)
+        private static void ListAllRenters(IPersonLogic personLogic, bool cnt = true)
         {
-            Console.WriteLine(Renter.ColumnInfo());
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n" + Renter.ColumnInfo() + "\n");
+            Console.ForegroundColor = ConsoleColor.White;
             personLogic.GetAllRenters().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine($"\nPress a button to continue." + ' ');
             Console.ReadKey();
+
+            if (cnt)
+            {
+                Console.WriteLine("\nPress a button to continue." + ' ');
+                Console.ReadKey();
+            }
         }
 
         private static void AddNewRenter(IPersonLogic personLogic)
@@ -617,6 +684,9 @@ namespace MyLibrary.Program
 
         private static void DeleteRenter(IPersonLogic personLogic)
         {
+            ListAllRenters(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -662,6 +732,9 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterAddress(IPersonLogic personLogic)
         {
+            ListAllRenters(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -697,6 +770,9 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterEmail(IPersonLogic personLogic)
         {
+            ListAllRenters(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -732,6 +808,9 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterName(IPersonLogic personLogic)
         {
+            ListAllRenters(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -767,6 +846,9 @@ namespace MyLibrary.Program
 
         private static void ChangeRenterMembershipType(IPersonLogic personLogic)
         {
+            ListAllRenters(personLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -799,12 +881,20 @@ namespace MyLibrary.Program
             Console.ReadKey();
         }
 
-        private static void ListAllRentals(ILibraryLogic libraryLogic)
+        private static void ListAllRentals(ILibraryLogic libraryLogic, bool cnt = true)
         {
-            Console.WriteLine(BookRental.ColumnInfo());
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n" + BookRental.ColumnInfo() + "\n");
+            Console.ForegroundColor = ConsoleColor.White;
             libraryLogic.GetAllBookRentals().ToList().ForEach(x => Console.WriteLine(x.ToString()));
             Console.WriteLine("\nPress a button to continue." + ' ');
             Console.ReadKey();
+
+            if (cnt)
+            {
+                Console.WriteLine("\nPress a button to continue." + ' ');
+                Console.ReadKey();
+            }
         }
 
         private static void AddNewRental(ILibraryLogic libraryLogic, IPersonLogic personLogic)
@@ -914,6 +1004,9 @@ namespace MyLibrary.Program
 
         private static void DeleteRental(ILibraryLogic libraryLogic)
         {
+            ListAllRentals(libraryLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
 
@@ -945,6 +1038,9 @@ namespace MyLibrary.Program
 
         private static void ModifyRentalDays(ILibraryLogic libraryLogic)
         {
+            ListAllRentals(libraryLogic, false);
+            Console.WriteLine();
+
             bool success;
             int id;
             int days;

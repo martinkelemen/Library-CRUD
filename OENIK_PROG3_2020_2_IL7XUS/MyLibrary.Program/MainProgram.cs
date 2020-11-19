@@ -24,6 +24,7 @@ namespace MyLibrary.Program
             Factory factory = new Factory();
             Console.WindowWidth = 150;
             Console.WindowHeight = 25;
+            Console.Title = "Library Database";
 
             var menu = new ConsoleMenu()
                 .Add(">>BOOKS", () => Menu.BookMenu(factory.LibraryLogic))
