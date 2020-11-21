@@ -91,6 +91,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOKS", () => ListAllBooks(libraryLogic))
+                .Add(">> GET ONE BOOK", () => GetOneBook(libraryLogic))
                 .Add(">> ADD A NEW BOOK", () => AddNewBook(libraryLogic))
                 .Add(">> DELETE A BOOK", () => DeleteBook(libraryLogic))
                 .Add(">> MODIFY A BOOK", () => ModifyBook(libraryLogic))
@@ -107,6 +108,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL WORKERS", () => ListAllWorkers(personLogic))
+                .Add(">> GET ONE WORKER", () => GetOneWorker(personLogic))
                 .Add(">> ADD A NEW WORKER", () => AddNewWorker(personLogic))
                 .Add(">> DELETE A WORKER", () => DeleteWorker(personLogic))
                 .Add(">> MODIFY A WORKER", () => ModifyWorker(personLogic))
@@ -123,6 +125,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL RENTERS", () => ListAllRenters(personLogic))
+                .Add(">> GET ONE RENTER", () => GetOneRenter(personLogic))
                 .Add(">> ADD A NEW RENTER", () => AddNewRenter(personLogic))
                 .Add(">> DELETE A RENTER", () => DeleteRenter(personLogic))
                 .Add(">> MODIFY A RENTER", () => ModifyRenter(personLogic))
@@ -140,6 +143,7 @@ namespace MyLibrary.Program
         {
             var menu = new ConsoleMenu()
                 .Add(">> LIST ALL BOOK RENTALS", () => ListAllRentals(libraryLogic))
+                .Add(">> GET ONE BOOK RENTAL", () => GetOneRental(libraryLogic))
                 .Add(">> ADD A BOOK RENTAL", () => AddNewRental(libraryLogic, personLogic))
                 .Add(">> DELETE A BOOK RENTAL", () => DeleteRental(libraryLogic))
                 .Add(">> MODIFY A BOOK RENTAL'S NUMBER OF DAYS", () => ModifyRentalDays(libraryLogic))
@@ -160,6 +164,29 @@ namespace MyLibrary.Program
                 Console.WriteLine("\nPress a button to continue." + ' ');
                 Console.ReadKey();
             }
+        }
+
+        private static void GetOneBook(ILibraryLogic libraryLogic)
+        {
+            Console.WriteLine("Please enter the ISBN number of the book." + ' ');
+            Console.Write("ISBN:" + ' ');
+            string isbn = Console.ReadLine();
+            Book b = libraryLogic.GetBookById(isbn);
+
+            if (b != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("\n" + Book.ColumnInfo() + "\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(b);
+            }
+            else
+            {
+                Console.WriteLine("\nThere is no such book with this ISBN number." + ' ');
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
         }
 
         private static void AddNewBook(ILibraryLogic libraryLogic)
@@ -350,6 +377,43 @@ namespace MyLibrary.Program
                 Console.WriteLine("\nPress a button to continue." + ' ');
                 Console.ReadKey();
             }
+        }
+
+        private static void GetOneWorker(IPersonLogic personLogic)
+        {
+            bool success;
+            int id;
+
+            do
+            {
+                Console.WriteLine("Please enter the ID of the worker." + ' ');
+                Console.Write("ID:" + ' ');
+                success = int.TryParse(Console.ReadLine(), out id);
+
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+                else
+                {
+                    try
+                    {
+                        Worker w = personLogic.GetWorkerById(id);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.WriteLine("\n" + Worker.ColumnInfo() + "\n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(w);
+                    }
+                    catch (IDOutOfRangeException e)
+                    {
+                        Console.WriteLine("\n" + e.Message);
+                    }
+                }
+            }
+            while (!success);
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
         }
 
         private static void AddNewWorker(IPersonLogic personLogic)
@@ -642,6 +706,43 @@ namespace MyLibrary.Program
             }
         }
 
+        private static void GetOneRenter(IPersonLogic personLogic)
+        {
+            bool success;
+            int id;
+
+            do
+            {
+                Console.WriteLine("Please enter the ID of the renter." + ' ');
+                Console.Write("ID:" + ' ');
+                success = int.TryParse(Console.ReadLine(), out id);
+
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+                else
+                {
+                    try
+                    {
+                        Renter r = personLogic.GetRenterById(id);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.WriteLine("\n" + Renter.ColumnInfo() + "\n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(r);
+                    }
+                    catch (IDOutOfRangeException e)
+                    {
+                        Console.WriteLine("\n" + e.Message);
+                    }
+                }
+            }
+            while (!success);
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
         private static void AddNewRenter(IPersonLogic personLogic)
         {
             bool success;
@@ -895,6 +996,43 @@ namespace MyLibrary.Program
                 Console.WriteLine("\nPress a button to continue." + ' ');
                 Console.ReadKey();
             }
+        }
+
+        private static void GetOneRental(ILibraryLogic libraryLogic)
+        {
+            bool success;
+            int id;
+
+            do
+            {
+                Console.WriteLine("Please enter the ID of the rental." + ' ');
+                Console.Write("ID:" + ' ');
+                success = int.TryParse(Console.ReadLine(), out id);
+
+                if (!success)
+                {
+                    Console.WriteLine("This is not a number." + ' ');
+                }
+                else
+                {
+                    try
+                    {
+                        BookRental br = libraryLogic.GetBookRentalById(id);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.WriteLine("\n" + BookRental.ColumnInfo() + "\n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(br);
+                    }
+                    catch (IDOutOfRangeException e)
+                    {
+                        Console.WriteLine("\n" + e.Message);
+                    }
+                }
+            }
+            while (!success);
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
         }
 
         private static void AddNewRental(ILibraryLogic libraryLogic, IPersonLogic personLogic)
