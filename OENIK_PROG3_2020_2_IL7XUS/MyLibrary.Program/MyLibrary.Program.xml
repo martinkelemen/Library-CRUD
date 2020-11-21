@@ -70,13 +70,31 @@
             </summary>
             <param name="libraryLogic">The logic class of the library.</param>
         </member>
+        <member name="M:MyLibrary.Program.Menu.GroupByLanguagesAsync(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. Groups by languages with averages of the number of rental days.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
         <member name="M:MyLibrary.Program.Menu.GroupByMembershipType(MyLibrary.Logic.ILibraryLogic)">
             <summary>
             A non-crud method. Groups by membership types and count them.
             </summary>
             <param name="libraryLogic">The logic class of the library.</param>
         </member>
+        <member name="M:MyLibrary.Program.Menu.GroupByMembershipTypeAsync(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. Groups by membership types and count them.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
         <member name="M:MyLibrary.Program.Menu.ListAllRentsWithNames(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. List all of the book rentals with the book's, worker's and renter's names.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.ListAllRentsWithNamesAsync(MyLibrary.Logic.ILibraryLogic)">
             <summary>
             A non-crud method. List all of the book rentals with the book's, worker's and renter's names.
             </summary>

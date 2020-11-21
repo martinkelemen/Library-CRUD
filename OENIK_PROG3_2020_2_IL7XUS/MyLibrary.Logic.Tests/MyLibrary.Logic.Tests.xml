@@ -4,5 +4,55 @@
         <name>MyLibrary.Logic.Tests</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Logic.Tests.LibraryLogicTests">
+            <summary>
+            The class for the LibraryLogic tests.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.LibraryLogicTests.TestRemoveBook">
+            <summary>
+            Tests the LibraryLogic's RemoveBook method.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.LibraryLogicTests.TestGetAllRentals">
+            <summary>
+            Tests the LibraryLogic's GetAllRentals function.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.LibraryLogicTests.TestGetRentByLanguage">
+            <summary>
+            Tests the LibraryLogic's GetRentByLanguage function.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.LibraryLogicTests.TestGetRentByMembership">
+            <summary>
+            Tests the LibraryLogic's GetRentByMembership function.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.LibraryLogicTests.TestListAllRents">
+            <summary>
+            Tests the LibraryLogic's ListAllRents function.
+            </summary>
+        </member>
+        <member name="T:MyLibrary.Logic.Tests.PersonLogicTests">
+            <summary>
+            The class for the PersonLogic tests.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.PersonLogicTests.TestAddRenter">
+            <summary>
+            Tests the PersonLogic's AddRenter method.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.PersonLogicTests.TestGetOneWorker">
+            <summary>
+            Tests the PersonLogic's GetOneWorker function.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.Tests.PersonLogicTests.TestChangeRenterMembershipType">
+            <summary>
+            Tests the PersonLogic's ChangeRenterMembershipType method.
+            </summary>
+        </member>
     </members>
 </doc>

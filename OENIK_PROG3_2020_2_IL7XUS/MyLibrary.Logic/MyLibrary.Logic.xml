@@ -161,13 +161,31 @@
             </summary>
             <returns>IList type.</returns>
         </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetRentByLanguageAsync">
+            <summary>
+            Gives back an IList type with the rentals groupped by book's languages.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
         <member name="M:MyLibrary.Logic.ILibraryLogic.GetRentByMembership">
             <summary>
             Gives back an IList type with the rentals groupped by renter's type of memberships.
             </summary>
             <returns>IList type.</returns>
         </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetRentByMembershipAsync">
+            <summary>
+            Gives back an IList type with the rentals groupped by renter's type of memberships.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
         <member name="M:MyLibrary.Logic.ILibraryLogic.ListAllRents">
+            <summary>
+            Gives back an IList type with all rents and the names of book's, worker's and renter's.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.ListAllRentsAsync">
             <summary>
             Gives back an IList type with all rents and the names of book's, worker's and renter's.
             </summary>
@@ -380,13 +398,31 @@
             </summary>
             <returns>IList type.</returns>
         </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetRentByLanguageAsync">
+            <summary>
+            Gives back an IList type with the rentals groupped by book's languages.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
         <member name="M:MyLibrary.Logic.LibraryLogic.GetRentByMembership">
             <summary>
             Gives back an IList type with the rentals groupped by renter's type of memberships.
             </summary>
             <returns>IList type.</returns>
         </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetRentByMembershipAsync">
+            <summary>
+            Gives back an IList type with the rentals groupped by renter's type of memberships.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
         <member name="M:MyLibrary.Logic.LibraryLogic.ListAllRents">
+            <summary>
+            Gives back an IList type with all rents and the names of book's, worker's and renter's.
+            </summary>
+            <returns>IList type.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.ListAllRentsAsync">
             <summary>
             Gives back an IList type with all rents and the names of book's, worker's and renter's.
             </summary>
