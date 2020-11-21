@@ -6,7 +6,7 @@
     <members>
         <member name="T:MyLibrary.Program.Factory">
             <summary>
-            The factory class of the DbContext, Repositories and Logics.
+            The factory class of the DbContext, Repository and the Logic classes.
             </summary>
         </member>
         <member name="M:MyLibrary.Program.Factory.#ctor">
@@ -58,6 +58,54 @@
             <summary>
             The main method, where the program starts.
             </summary>
+        </member>
+        <member name="T:MyLibrary.Program.Menu">
+            <summary>
+            The class for the program's menu options.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.GroupByLanguages(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. Groups by languages with averages of the number of rental days.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.GroupByMembershipType(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. Groups by membership types and count them.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.ListAllRentsWithNames(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            A non-crud method. List all of the book rentals with the book's, worker's and renter's names.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.BookMenu(MyLibrary.Logic.ILibraryLogic)">
+            <summary>
+            Lists the options of the books' collection.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.WorkerMenu(MyLibrary.Logic.IPersonLogic)">
+            <summary>
+            Lists the options of the worker' collection.
+            </summary>
+            <param name="personLogic">The logic class of the people.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.RenterMenu(MyLibrary.Logic.IPersonLogic)">
+            <summary>
+            Lists the options of the renters' collection.
+            </summary>
+            <param name="personLogic">The logic class of the people.</param>
+        </member>
+        <member name="M:MyLibrary.Program.Menu.RentalMenu(MyLibrary.Logic.ILibraryLogic,MyLibrary.Logic.IPersonLogic)">
+            <summary>
+            Lists the options of the rentals' collection.
+            </summary>
+            <param name="libraryLogic">The logic class of the library.</param>
+            <param name="personLogic">The logic class of the people.</param>
         </member>
     </members>
 </doc>

@@ -4,6 +4,29 @@
         <name>MyLibrary.Repository</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Repository.IDOutOfRangeException">
+            <summary>
+            The class for the wrong ID exceptions.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.IDOutOfRangeException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.IDOutOfRangeException"/> class.
+            </summary>
+            <param name="message">The message of the excepption.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IDOutOfRangeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.IDOutOfRangeException"/> class.
+            </summary>
+            <param name="message">The message of the exception.</param>
+            <param name="innerException">An exception object.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.IDOutOfRangeException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.IDOutOfRangeException"/> class.
+            </summary>
+        </member>
         <member name="T:MyLibrary.Repository.BookRentalRepository">
             <summary>
             The book rental repository class inherited from the abstract Repository class, implements the IBookRentalRepository.
@@ -68,6 +91,49 @@
             <param name="id">The id of the instance.</param>
             <returns>A Book instance.</returns>
         </member>
+        <member name="T:MyLibrary.Repository.DbRepository`2">
+            <summary>
+            The abstract ancestor class of the repository classes.
+            </summary>
+            <typeparam name="T">Generic type T.</typeparam>
+            <typeparam name="TK">Generic type TK.</typeparam>
+        </member>
+        <member name="M:MyLibrary.Repository.DbRepository`2.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyLibrary.Repository.DbRepository`2"/> class.
+            </summary>
+            <param name="ctx">The context of the database.</param>
+        </member>
+        <member name="P:MyLibrary.Repository.DbRepository`2.Ctx">
+            <summary>
+            Gets the context of the database.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Repository.DbRepository`2.AddNew(`0)">
+            <summary>
+            Adds a new instance to a table.
+            </summary>
+            <param name="newInstance">The new instance.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.DbRepository`2.DeleteOld(`1)">
+            <summary>
+            Deletes an instance from a table by id.
+            </summary>
+            <param name="id">The id of the instance.</param>
+        </member>
+        <member name="M:MyLibrary.Repository.DbRepository`2.GetAll">
+            <summary>
+            Returns an IQueryable type of all the elements in a table.
+            </summary>
+            <returns>Returns IQueryable type.</returns>
+        </member>
+        <member name="M:MyLibrary.Repository.DbRepository`2.GetOne(`1)">
+            <summary>
+            Returns a single instance by ID.
+            </summary>
+            <param name="id">Id of Type T instance.</param>
+            <returns>Returns T generic type based on Id.</returns>
+        </member>
         <member name="T:MyLibrary.Repository.RenterRepository">
             <summary>
             The renter repository class inherited from the abstract Repository class, implements the IRenterRepository.
@@ -113,49 +179,6 @@
             </summary>
             <param name="id">The id of the instance.</param>
             <returns>A Renter instance.</returns>
-        </member>
-        <member name="T:MyLibrary.Repository.Repository`2">
-            <summary>
-            The abstract ancestor class of the repository classes.
-            </summary>
-            <typeparam name="T">Generic type T.</typeparam>
-            <typeparam name="TK">Generic type TK.</typeparam>
-        </member>
-        <member name="M:MyLibrary.Repository.Repository`2.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MyLibrary.Repository.Repository`2"/> class.
-            </summary>
-            <param name="ctx">The context of the database.</param>
-        </member>
-        <member name="P:MyLibrary.Repository.Repository`2.Ctx">
-            <summary>
-            Gets the context of the database.
-            </summary>
-        </member>
-        <member name="M:MyLibrary.Repository.Repository`2.AddNew(`0)">
-            <summary>
-            Adds a new instance to a table.
-            </summary>
-            <param name="newInstance">The new instance.</param>
-        </member>
-        <member name="M:MyLibrary.Repository.Repository`2.DeleteOld(`1)">
-            <summary>
-            Deletes an instance from a table by id.
-            </summary>
-            <param name="id">The id of the instance.</param>
-        </member>
-        <member name="M:MyLibrary.Repository.Repository`2.GetAll">
-            <summary>
-            Returns an IQueryable type of all the elements in a table.
-            </summary>
-            <returns>Returns IQueryable type.</returns>
-        </member>
-        <member name="M:MyLibrary.Repository.Repository`2.GetOne(`1)">
-            <summary>
-            Returns a single instance by ID.
-            </summary>
-            <param name="id">Id of Type T instance.</param>
-            <returns>Returns T generic type based on Id.</returns>
         </member>
         <member name="T:MyLibrary.Repository.WorkerRepository">
             <summary>

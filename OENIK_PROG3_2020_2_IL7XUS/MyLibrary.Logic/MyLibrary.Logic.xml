@@ -4,12 +4,80 @@
         <name>MyLibrary.Logic</name>
     </assembly>
     <members>
+        <member name="T:MyLibrary.Logic.GroupByLanguage">
+            <summary>
+            The class for one of the non-crud methods. Contains information about how many was the rental days on average groupped by the language of the book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.GroupByLanguage.Language">
+            <summary>
+            Gets or sets the language of the books.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.GroupByLanguage.Average">
+            <summary>
+            Gets or sets the number of rental days on average.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByLanguage.ToString">
+            <summary>
+            Gives back all of the properties of the query.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByLanguage.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instances are considered equal.
+            </summary>
+            <param name="obj">An object.</param>
+            <returns>A bool.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByLanguage.GetHashCode">
+            <summary>
+            Gives back the object's hash code.
+            </summary>
+            <returns>An int.</returns>
+        </member>
+        <member name="T:MyLibrary.Logic.GroupByMembership">
+            <summary>
+            The class for one of the non-crud methods. Contains information about how many times a type of membership member rented a book.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.GroupByMembership.MembershipType">
+            <summary>
+            Gets or sets the type of the membership.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.GroupByMembership.Count">
+            <summary>
+            Gets or sets how many times was a book rented by a membership type.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByMembership.ToString">
+            <summary>
+            Gives back all of the properties of the query.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByMembership.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instances are considered equal.
+            </summary>
+            <param name="obj">An object.</param>
+            <returns>A bool.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.GroupByMembership.GetHashCode">
+            <summary>
+            Gives back the object's hash code.
+            </summary>
+            <returns>An int.</returns>
+        </member>
         <member name="T:MyLibrary.Logic.ILibraryLogic">
             <summary>
             The logic interface of the book repository class and the book rental repository class.
             </summary>
         </member>
-        <member name="M:MyLibrary.Logic.ILibraryLogic.GetBookById(System.Int32)">
+        <member name="M:MyLibrary.Logic.ILibraryLogic.GetBookById(System.String)">
             <summary>
             Gives back a Book instance by id.
             </summary>
@@ -46,6 +114,18 @@
             Adds a new rental to the table.
             </summary>
             <param name="rentalInstance">The instance of the new rental.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.DeleteBook(System.String)">
+            <summary>
+            Deletes a Book instance from the table by ID.
+            </summary>
+            <param name="id">The book's ID.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.ILibraryLogic.DeleteRental(System.Int32)">
+            <summary>
+            Deletes a BookRental instance from the table by ID.
+            </summary>
+            <param name="id">The rental's ID.</param>
         </member>
         <member name="M:MyLibrary.Logic.ILibraryLogic.ChangeBookLanguage(System.String,System.String)">
             <summary>
@@ -135,6 +215,18 @@
             Adds a new Worker instance to the table.
             </summary>
             <param name="workerInstance">The new Worker instance.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.DeleteRenter(System.Int32)">
+            <summary>
+            Deletes a Renter instance from the table by ID.
+            </summary>
+            <param name="id">The renter's ID.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.IPersonLogic.DeleteWorker(System.Int32)">
+            <summary>
+            Deletes a Worker instance from the table by ID.
+            </summary>
+            <param name="id">The worker's ID.</param>
         </member>
         <member name="M:MyLibrary.Logic.IPersonLogic.ChangeRenterAddress(System.Int32,System.String)">
             <summary>
@@ -244,6 +336,18 @@
             <param name="id">The id of the book.</param>
             <param name="newYear">The new publishing year of the book.</param>
         </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.DeleteBook(System.String)">
+            <summary>
+            Deletes a Book instance from the table by ID.
+            </summary>
+            <param name="id">The book's ID.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.LibraryLogic.DeleteRental(System.Int32)">
+            <summary>
+            Deletes a BookRental instance from the table by ID.
+            </summary>
+            <param name="id">The rental's ID.</param>
+        </member>
         <member name="M:MyLibrary.Logic.LibraryLogic.GetAllBookRentals">
             <summary>
             Gives back an IList type with all rentals.
@@ -256,7 +360,7 @@
             </summary>
             <returns>The IList type.</returns>
         </member>
-        <member name="M:MyLibrary.Logic.LibraryLogic.GetBookById(System.Int32)">
+        <member name="M:MyLibrary.Logic.LibraryLogic.GetBookById(System.String)">
             <summary>
             Gives back a Book instance by id.
             </summary>
@@ -368,6 +472,18 @@
             <param name="id">The id of the worker.</param>
             <param name="newSalary">The new salary of the worker.</param>
         </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.DeleteRenter(System.Int32)">
+            <summary>
+            Deletes a Renter instance from the table by ID.
+            </summary>
+            <param name="id">The renter's ID.</param>
+        </member>
+        <member name="M:MyLibrary.Logic.PersonLogic.DeleteWorker(System.Int32)">
+            <summary>
+            Deletes a Worker instance from the table by ID.
+            </summary>
+            <param name="id">The worker's ID.</param>
+        </member>
         <member name="M:MyLibrary.Logic.PersonLogic.GetAllRenters">
             <summary>
             Gives back an IList type with all renters.
@@ -393,6 +509,66 @@
             </summary>
             <param name="id">The id of the worker instance.</param>
             <returns>Worker instance.</returns>
+        </member>
+        <member name="T:MyLibrary.Logic.RentalWithNames">
+            <summary>
+            The class for one of the non-crud methods. Contains information about a rental with the book's, worker's and renter's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.RentId">
+            <summary>
+            Gets or sets the ID of the rental.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.BookName">
+            <summary>
+            Gets or sets the book's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.RenterName">
+            <summary>
+            Gets or sets the renter's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.WorkerName">
+            <summary>
+            Gets or sets the worker's name.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.RentDate">
+            <summary>
+            Gets or sets the date of the rental.
+            </summary>
+        </member>
+        <member name="P:MyLibrary.Logic.RentalWithNames.Days">
+            <summary>
+            Gets or sets the number of the rental days.
+            </summary>
+        </member>
+        <member name="M:MyLibrary.Logic.RentalWithNames.ColumnInfo">
+            <summary>
+            Gives back the column names from the ToString method.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.RentalWithNames.ToString">
+            <summary>
+            Gives back all of the properties of the query.
+            </summary>
+            <returns>Returns a string.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.RentalWithNames.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instances are considered equal.
+            </summary>
+            <param name="obj">An object.</param>
+            <returns>A bool.</returns>
+        </member>
+        <member name="M:MyLibrary.Logic.RentalWithNames.GetHashCode">
+            <summary>
+            Gives back the object's hash code.
+            </summary>
+            <returns>An int.</returns>
         </member>
     </members>
 </doc>

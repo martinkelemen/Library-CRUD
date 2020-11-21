@@ -305,5 +305,18 @@
             </summary>
             <returns>Returns a string.</returns>
         </member>
+        <member name="M:MyLibrary.Data.Worker.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instances are considered equal.
+            </summary>
+            <param name="obj">An object.</param>
+            <returns>A bool.</returns>
+        </member>
+        <member name="M:MyLibrary.Data.Worker.GetHashCode">
+            <summary>
+            Gives back the object's hash code.
+            </summary>
+            <returns>An int.</returns>
+        </member>
     </members>
 </doc>
