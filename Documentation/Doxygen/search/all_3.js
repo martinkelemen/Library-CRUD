@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['days_41',['Days',['../class_my_library_1_1_data_1_1_book_rental.html#a65b28c47a9e26882a248a4bf12de1ecd',1,'MyLibrary.Data.BookRental.Days()'],['../class_my_library_1_1_logic_1_1_rental_with_names.html#a432ea1b4165b888952cc318bf1d11b6d',1,'MyLibrary.Logic.RentalWithNames.Days()']]],
+  ['dbrepository_42',['DbRepository',['../class_my_library_1_1_repository_1_1_db_repository.html',1,'MyLibrary.Repository.DbRepository&lt; T, TK &gt;'],['../class_my_library_1_1_repository_1_1_db_repository.html#ade8be22b12546fdb3916353122380a73',1,'MyLibrary.Repository.DbRepository.DbRepository()']]],
+  ['dbrepository_3c_20book_2c_20string_20_3e_43',['DbRepository&lt; Book, string &gt;',['../class_my_library_1_1_repository_1_1_db_repository.html',1,'MyLibrary::Repository']]],
+  ['dbrepository_3c_20bookrental_2c_20int_20_3e_44',['DbRepository&lt; BookRental, int &gt;',['../class_my_library_1_1_repository_1_1_db_repository.html',1,'MyLibrary::Repository']]],
+  ['dbrepository_3c_20renter_2c_20int_20_3e_45',['DbRepository&lt; Renter, int &gt;',['../class_my_library_1_1_repository_1_1_db_repository.html',1,'MyLibrary::Repository']]],
+  ['dbrepository_3c_20worker_2c_20int_20_3e_46',['DbRepository&lt; Worker, int &gt;',['../class_my_library_1_1_repository_1_1_db_repository.html',1,'MyLibrary::Repository']]],
+  ['deletebook_47',['DeleteBook',['../interface_my_library_1_1_logic_1_1_i_library_logic.html#ac2c7bbf73cbd1ee4e6193e3463e10c69',1,'MyLibrary.Logic.ILibraryLogic.DeleteBook()'],['../class_my_library_1_1_logic_1_1_library_logic.html#a20bb1795a8ac8f0e4da0af6fd28b1540',1,'MyLibrary.Logic.LibraryLogic.DeleteBook()']]],
+  ['deleteold_48',['DeleteOld',['../class_my_library_1_1_repository_1_1_db_repository.html#a539a8550e651ac2303980565ebc88d6c',1,'MyLibrary.Repository.DbRepository.DeleteOld()'],['../interface_my_library_1_1_repository_1_1_i_repository.html#a65f659a4a6d82a1292b98da9a0ac3213',1,'MyLibrary.Repository.IRepository.DeleteOld()']]],
+  ['deleterental_49',['DeleteRental',['../interface_my_library_1_1_logic_1_1_i_library_logic.html#a32eded25ab8b76a19aa97076d36add76',1,'MyLibrary.Logic.ILibraryLogic.DeleteRental()'],['../class_my_library_1_1_logic_1_1_library_logic.html#af5335864b83a9fe742eeb3c5c3087075',1,'MyLibrary.Logic.LibraryLogic.DeleteRental()']]],
+  ['deleterenter_50',['DeleteRenter',['../interface_my_library_1_1_logic_1_1_i_person_logic.html#acaf61083e508f15617d1863f62ee0a6e',1,'MyLibrary.Logic.IPersonLogic.DeleteRenter()'],['../class_my_library_1_1_logic_1_1_person_logic.html#abb436f0b584c7bc18efa5e059eaf2131',1,'MyLibrary.Logic.PersonLogic.DeleteRenter()']]],
+  ['deleteworker_51',['DeleteWorker',['../interface_my_library_1_1_logic_1_1_i_person_logic.html#a19ecba64d13108ea101e405cf5bf3c19',1,'MyLibrary.Logic.IPersonLogic.DeleteWorker()'],['../class_my_library_1_1_logic_1_1_person_logic.html#a0d489127fe96108acd9d96cd0aa23394',1,'MyLibrary.Logic.PersonLogic.DeleteWorker()']]]
+];
