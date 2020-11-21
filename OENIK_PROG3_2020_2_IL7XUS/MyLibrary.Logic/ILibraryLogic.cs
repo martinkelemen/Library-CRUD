@@ -7,6 +7,7 @@ namespace MyLibrary.Logic
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
     using Castle.DynamicProxy.Contributors;
     using MyLibrary.Data;
     using MyLibrary.Repository;
@@ -101,15 +102,33 @@ namespace MyLibrary.Logic
         IList<GroupByLanguage> GetRentByLanguage();
 
         /// <summary>
+        /// Gives back an IList type with the rentals groupped by book's languages.
+        /// </summary>
+        /// <returns>IList type.</returns>
+        Task<IList<GroupByLanguage>> GetRentByLanguageAsync();
+
+        /// <summary>
         /// Gives back an IList type with the rentals groupped by renter's type of memberships.
         /// </summary>
         /// <returns>IList type.</returns>
         IList<GroupByMembership> GetRentByMembership();
 
         /// <summary>
+        /// Gives back an IList type with the rentals groupped by renter's type of memberships.
+        /// </summary>
+        /// <returns>IList type.</returns>
+        Task<IList<GroupByMembership>> GetRentByMembershipAsync();
+
+        /// <summary>
         /// Gives back an IList type with all rents and the names of book's, worker's and renter's.
         /// </summary>
         /// <returns>IList type.</returns>
         IList<RentalWithNames> ListAllRents();
+
+        /// <summary>
+        /// Gives back an IList type with all rents and the names of book's, worker's and renter's.
+        /// </summary>
+        /// <returns>IList type.</returns>
+        Task<IList<RentalWithNames>> ListAllRentsAsync();
     }
 }

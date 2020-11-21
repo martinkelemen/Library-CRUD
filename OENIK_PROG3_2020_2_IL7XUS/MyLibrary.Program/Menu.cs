@@ -40,6 +40,26 @@ namespace MyLibrary.Program
         }
 
         /// <summary>
+        /// A non-crud method. Groups by languages with averages of the number of rental days.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void GroupByLanguagesAsync(ILibraryLogic libraryLogic)
+        {
+            if (libraryLogic != null)
+            {
+                var result = libraryLogic.GetRentByLanguageAsync().Result;
+
+                foreach (var item in result)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
+        /// <summary>
         /// A non-crud method. Groups by membership types and count them.
         /// </summary>
         /// <param name="libraryLogic">The logic class of the library.</param>
@@ -50,6 +70,26 @@ namespace MyLibrary.Program
                 var results = libraryLogic.GetRentByMembership();
 
                 foreach (var item in results)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// A non-crud method. Groups by membership types and count them.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void GroupByMembershipTypeAsync(ILibraryLogic libraryLogic)
+        {
+            if (libraryLogic != null)
+            {
+                var result = libraryLogic.GetRentByMembershipAsync().Result;
+
+                foreach (var item in result)
                 {
                     Console.WriteLine(item);
                 }
@@ -76,6 +116,30 @@ namespace MyLibrary.Program
                 foreach (var rent in rentals)
                 {
                     Console.WriteLine(rent);
+                }
+            }
+
+            Console.WriteLine("\nPress a button to continue." + ' ');
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// A non-crud method. List all of the book rentals with the book's, worker's and renter's names.
+        /// </summary>
+        /// <param name="libraryLogic">The logic class of the library.</param>
+        public static void ListAllRentsWithNamesAsync(ILibraryLogic libraryLogic)
+        {
+            if (libraryLogic != null)
+            {
+                var rentals = libraryLogic.ListAllRentsAsync().Result;
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("\n" + RentalWithNames.ColumnInfo() + "\n");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                foreach (var item in rentals)
+                {
+                    Console.WriteLine(item);
                 }
             }
 
