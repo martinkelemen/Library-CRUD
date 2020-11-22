@@ -33,6 +33,11 @@ namespace MyLibrary.Repository
         public void ChangeLanguage(string id, string newLanguage)
         {
             var book = this.GetOne(id);
+            if (book == null)
+            {
+                throw new IDOutOfRangeException();
+            }
+
             book.Language = newLanguage;
             this.Ctx.SaveChanges();
         }
@@ -45,6 +50,11 @@ namespace MyLibrary.Repository
         public void ChangePublisher(string id, string newPublisher)
         {
             var book = this.GetOne(id);
+            if (book == null)
+            {
+                throw new IDOutOfRangeException();
+            }
+
             book.Publisher = newPublisher;
             this.Ctx.SaveChanges();
         }
@@ -57,6 +67,11 @@ namespace MyLibrary.Repository
         public void ChangeYear(string id, int newYear)
         {
             var book = this.GetOne(id);
+            if (book == null)
+            {
+                throw new IDOutOfRangeException();
+            }
+
             book.Year = newYear;
             this.Ctx.SaveChanges();
         }

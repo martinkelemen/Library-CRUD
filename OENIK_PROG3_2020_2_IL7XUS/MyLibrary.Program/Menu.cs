@@ -365,9 +365,9 @@ namespace MyLibrary.Program
 
                 libraryLogic.ChangeBookLanguage(isbn, language);
             }
-            catch (ArgumentNullException)
+            catch (IDOutOfRangeException)
             {
-                Console.WriteLine("There is no book with this ISBN number." + ' ');
+                Console.WriteLine("There is no such ISBN number." + ' ');
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
@@ -388,9 +388,9 @@ namespace MyLibrary.Program
 
                 libraryLogic.ChangeBookPublisher(isbn, publisher);
             }
-            catch (ArgumentNullException)
+            catch (IDOutOfRangeException)
             {
-                Console.WriteLine("There is no book with this ISBN number." + ' ');
+                Console.WriteLine("There is no such ISBN number." + ' ');
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
@@ -413,14 +413,19 @@ namespace MyLibrary.Program
                 {
                     Console.Write("The book's new publishing year:" + ' ');
                     success = int.TryParse(Console.ReadLine(), out year);
+
+                    if (!success)
+                    {
+                        Console.WriteLine("This is not a number." + ' ');
+                    }
                 }
                 while (!success);
 
                 libraryLogic.ChangeBookYear(isbn, year);
             }
-            catch (ArgumentNullException)
+            catch (IDOutOfRangeException)
             {
-                Console.WriteLine("There is no book with this ISBN number." + ' ');
+                Console.WriteLine("There is no such ISBN number." + ' ');
             }
 
             Console.WriteLine("\nPress a button to continue." + ' ');
@@ -433,8 +438,6 @@ namespace MyLibrary.Program
             Console.WriteLine("\n" + Worker.ColumnInfo() + "\n");
             Console.ForegroundColor = ConsoleColor.White;
             personLogic.GetAllWorkers().ToList().ForEach(x => Console.WriteLine(x.ToString()));
-            Console.WriteLine("\nPress a button to continue." + ' ');
-            Console.ReadKey();
 
             if (cnt)
             {
@@ -512,7 +515,7 @@ namespace MyLibrary.Program
                     Console.WriteLine("This is not a character." + ' ');
                 }
             }
-            while (!success || gender != 'F' || gender != 'M');
+            while (!success || (gender != 'F' && gender != 'M'));
             int salary;
             do
             {
@@ -527,7 +530,7 @@ namespace MyLibrary.Program
             DateTime hireDate;
             do
             {
-                Console.Write("\nHire date:" + ' ');
+                Console.Write("\nHire date(Year, Month, Day):" + ' ');
                 success = DateTime.TryParse(Console.ReadLine(), out hireDate);
                 if (!success)
                 {
@@ -760,8 +763,6 @@ namespace MyLibrary.Program
             Console.WriteLine("\n" + Renter.ColumnInfo() + "\n");
             Console.ForegroundColor = ConsoleColor.White;
             personLogic.GetAllRenters().ToList().ForEach(x => Console.WriteLine(x.ToString()));
-            Console.WriteLine($"\nPress a button to continue." + ' ');
-            Console.ReadKey();
 
             if (cnt)
             {
@@ -1052,8 +1053,6 @@ namespace MyLibrary.Program
             Console.WriteLine("\n" + BookRental.ColumnInfo() + "\n");
             Console.ForegroundColor = ConsoleColor.White;
             libraryLogic.GetAllBookRentals().ToList().ForEach(x => Console.WriteLine(x.ToString()));
-            Console.WriteLine("\nPress a button to continue." + ' ');
-            Console.ReadKey();
 
             if (cnt)
             {

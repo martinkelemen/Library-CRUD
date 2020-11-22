@@ -81,13 +81,19 @@ namespace MyLibrary.Repository
         public override Worker GetOne(int id)
         {
             var set = this.GetAll();
-            if (id < 0 || id > set.Count())
+            if (id < 1)
             {
                 throw new IDOutOfRangeException("There is no such ID in this table.");
             }
             else
             {
-                return set.SingleOrDefault(x => x.WorkerId == id);
+                Worker w = set.SingleOrDefault(x => x.WorkerId == id);
+                if (w == null)
+                {
+                    throw new IDOutOfRangeException("There is no such ID in this table.");
+                }
+
+                return w;
             }
         }
     }
