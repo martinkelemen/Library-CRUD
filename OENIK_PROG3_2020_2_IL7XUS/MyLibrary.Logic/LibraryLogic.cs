@@ -167,9 +167,9 @@ namespace MyLibrary.Logic
         /// Gives back an IList type with the rentals groupped by book's languages.
         /// </summary>
         /// <returns>IList type.</returns>
-        public async Task<IList<GroupByLanguage>> GetRentByLanguageAsync()
+        public Task<IList<GroupByLanguage>> GetRentByLanguageAsync()
         {
-            return await Task.FromResult(this.GetRentByLanguage()).ConfigureAwait(false);
+            return Task.Run(() => this.GetRentByLanguage());
         }
 
         /// <summary>
@@ -194,9 +194,9 @@ namespace MyLibrary.Logic
         /// Gives back an IList type with the rentals groupped by renter's type of memberships.
         /// </summary>
         /// <returns>IList type.</returns>
-        public async Task<IList<GroupByMembership>> GetRentByMembershipAsync()
+        public Task<IList<GroupByMembership>> GetRentByMembershipAsync()
         {
-            return await Task.FromResult(this.GetRentByMembership()).ConfigureAwait(false);
+            return Task.Run(() => this.GetRentByMembership());
         }
 
         /// <summary>
@@ -224,9 +224,9 @@ namespace MyLibrary.Logic
         /// Gives back an IList type with all rents and the names of book's, worker's and renter's.
         /// </summary>
         /// <returns>IList type.</returns>
-        public async Task<IList<RentalWithNames>> ListAllRentsAsync()
+        public Task<IList<RentalWithNames>> ListAllRentsAsync()
         {
-            return await Task.FromResult(this.ListAllRents()).ConfigureAwait(false);
+            return Task.Run(() => this.ListAllRents());
         }
     }
 }
