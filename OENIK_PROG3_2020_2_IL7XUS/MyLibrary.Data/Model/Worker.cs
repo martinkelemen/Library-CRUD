@@ -9,6 +9,7 @@ namespace MyLibrary.Data
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// The table of workers.
@@ -73,6 +74,7 @@ namespace MyLibrary.Data
         /// Gets the virtual connection between the BookRental table and the Worker table.
         /// </summary>
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<BookRental> Rentals { get; }
 
         /// <summary>
