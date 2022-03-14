@@ -119,5 +119,9 @@ namespace MyLibrary.Logic
         /// <param name="id">The id of the worker.</param>
         /// <param name="newSalary">The new salary of the worker.</param>
         void ChangeWorkerSalary(int id, int newSalary);
+
+        void UpdateRenter(Renter item);
+
+        void UpdateWorker(Worker item);
     }
 }

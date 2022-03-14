@@ -69,5 +69,8 @@ namespace MyLibrary.Repository
         /// <param name="id">Id of Type T instance.</param>
         /// <returns>Returns T generic type based on Id.</returns>
         public abstract T GetOne(TK id);
+
+        public abstract void Update(T item);
+        
     }
 }

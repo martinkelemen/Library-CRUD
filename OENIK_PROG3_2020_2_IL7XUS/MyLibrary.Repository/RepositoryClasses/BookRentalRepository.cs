@@ -60,5 +60,18 @@ namespace MyLibrary.Repository
                 return br;
             }
         }
+
+        public override void Update(BookRental item)
+        {
+            var old = GetOne(item.RentalId);
+            foreach (var prop in old.GetType().GetProperties())
+            {
+                if (prop.GetAccessors().FirstOrDefault(t=>t.IsVirtual)==null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
+            }
+            Ctx.SaveChanges();
+        }
     }
 }

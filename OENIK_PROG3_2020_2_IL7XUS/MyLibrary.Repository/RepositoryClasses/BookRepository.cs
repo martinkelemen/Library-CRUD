@@ -85,5 +85,18 @@ namespace MyLibrary.Repository
         {
             return this.GetAll().SingleOrDefault(x => x.ISBN == id);
         }
+
+        public override void Update(Book item)
+        {
+            var old = GetOne(item.ISBN);
+            foreach (var prop in old.GetType().GetProperties())
+            {
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
+            }
+            Ctx.SaveChanges();
+        }
     }
 }

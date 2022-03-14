@@ -228,5 +228,15 @@ namespace MyLibrary.Logic
         {
             return Task.Run(() => this.ListAllRents());
         }
+
+        public void UpdateBook(Book item)
+        {
+            this.bookRepository.Update(item);
+        }
+
+        public void UpdateBookRental(BookRental item)
+        {
+            this.bookRentalRepository.Update(item);
+        }
     }
 }

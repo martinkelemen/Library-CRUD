@@ -184,5 +184,15 @@ namespace MyLibrary.Logic
         {
             return this.workerRepository.GetOne(id);
         }
+
+        public void UpdateRenter(Renter item)
+        {
+            this.renterRepository.Update(item);
+        }
+
+        public void UpdateWorker(Worker item)
+        {
+            this.workerRepository.Update(item);
+        }
     }
 }

@@ -130,5 +130,9 @@ namespace MyLibrary.Logic
         /// </summary>
         /// <returns>IList type.</returns>
         Task<IList<RentalWithNames>> ListAllRentsAsync();
+
+        void UpdateBook(Book item);
+
+        void UpdateBookRental(BookRental item);
     }
 }

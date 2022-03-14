@@ -42,5 +42,7 @@ namespace MyLibrary.Repository
         /// </summary>
         /// <param name="id">The id of the instance.</param>
         void DeleteOld(TK id);
+
+        void Update(T item);
     }
 }
