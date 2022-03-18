@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MyLibrary.Data;
+using MyLibrary.Endpoint.Services;
 using MyLibrary.Logic;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,12 @@ namespace MyLibrary.Endpoint.Controllers
     public class RenterController : ControllerBase
     {
         IPersonLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public RenterController(IPersonLogic logic)
+        public RenterController(IPersonLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -37,18 +41,22 @@ namespace MyLibrary.Endpoint.Controllers
         public void Create([FromBody] Renter value)
         {
             this.logic.AddRenter(value);
+            this.hub.Clients.All.SendAsync("RenterCreated", value);
         }
 
-        [HttpPut("{id}")]
-        public void UpdateMembershipType(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] Renter value)
         {
-            this.logic.ChangeRenterMembershipType(id, value);
+            this.logic.UpdateRenter(value);
+            this.hub.Clients.All.SendAsync("RenterUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var renterToDelete = this.logic.GetRenterById(id);
             this.logic.DeleteRenter(id);
+            this.hub.Clients.All.SendAsync("RenterDeleted", renterToDelete);
         }
     }
 }

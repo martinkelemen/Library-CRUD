@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MyLibrary.Data;
+using MyLibrary.Endpoint.Services;
 using MyLibrary.Logic;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,12 @@ namespace MyLibrary.Endpoint.Controllers
     public class BookController : ControllerBase
     {
         ILibraryLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public BookController(ILibraryLogic logic)
+        public BookController(ILibraryLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -35,12 +39,14 @@ namespace MyLibrary.Endpoint.Controllers
         public void Create([FromBody] Book value)
         {
             this.logic.AddBook(value);
+            this.hub.Clients.All.SendAsync("BookCreated", value);
         }
 
-        [HttpPut("{id}")]
-        public void UpdatePublisher(string id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] Book value)
         {
-            this.logic.ChangeBookPublisher(id, value);
+            this.logic.UpdateBook(value);
+            this.hub.Clients.All.SendAsync("BookUpdated", value);
         }
 
         //public void UpdatePublisher(string id, [FromBody] string value)
@@ -56,7 +62,9 @@ namespace MyLibrary.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
+            var bookToDelete = this.logic.GetBookById(id);
             this.logic.DeleteBook(id);
+            this.hub.Clients.All.SendAsync("BookDeleted", bookToDelete);
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MyLibrary.Data;
+using MyLibrary.Endpoint.Services;
 using MyLibrary.Logic;
 using MyLibrary.Repository;
 using System;
@@ -40,6 +41,8 @@ namespace MyLibrary.Endpoint
 
             services.AddTransient<ILibraryLogic, LibraryLogic>();
             services.AddTransient<IPersonLogic, PersonLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -86,6 +89,7 @@ namespace MyLibrary.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

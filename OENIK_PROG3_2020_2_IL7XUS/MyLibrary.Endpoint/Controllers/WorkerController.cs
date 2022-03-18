@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using MyLibrary.Data;
+using MyLibrary.Endpoint.Services;
 using MyLibrary.Logic;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,12 @@ namespace MyLibrary.Endpoint.Controllers
     public class WorkerController : ControllerBase
     {
         IPersonLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public WorkerController(IPersonLogic logic)
+        public WorkerController(IPersonLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -37,18 +41,22 @@ namespace MyLibrary.Endpoint.Controllers
         public void Create([FromBody] Worker value)
         {
             this.logic.AddWorker(value);
+            this.hub.Clients.All.SendAsync("WorkerCreated", value);
         }
 
-        [HttpPut("{id}")]
-        public void UpdateSalary(int id, [FromBody] int value)
+        [HttpPut]
+        public void Update([FromBody] Worker value)
         {
-            this.logic.ChangeWorkerSalary(id, value);
+            this.logic.UpdateWorker(value);
+            this.hub.Clients.All.SendAsync("WorkerUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var workerToDelete = this.logic.GetWorkerById(id);
             this.logic.DeleteWorker(id);
+            this.hub.Clients.All.SendAsync("WorkerDeleted", workerToDelete);
         }
     }
 }
