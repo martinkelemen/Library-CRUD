@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Book Editor</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Book Editor</h1>
+
+    <div id="formdiv">
+        <label>ISBN number</label>
+        <input type="text" id="isbn" />
+        <label>Title</label>
+        <input type="text" id="title" />
+        <label>Author's name</label>
+        <input type="text" id="authorname" />
+        <label>Category</label>
+        <input type="text" id="category" />
+        <label>Language</label>
+        <input type="text" id="language" />
+        <label>Year</label>
+        <input type="text" id="year" />
+        <label>Publisher's name</label>
+        <input type="text" id="publisher" />
+        <label>Pages</label>
+        <input type="text" id="pages" />
+        <button type="button" onclick="create()">Add Book</button>
+    </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ISBN number</th>
+                    <th>Title</th>
+                    <th>Author's name</th>
+                    <th>Category</th>
+                    <th>Language</th>
+                    <th>Year</th>
+                    <th>Publisher's name</th>
+                    <th>Pages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea"></tbody>
+        </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

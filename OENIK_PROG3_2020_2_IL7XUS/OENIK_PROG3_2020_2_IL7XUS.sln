@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibrary.Logic.Tests", "My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibrary.Endpoint", "MyLibrary.Endpoint\MyLibrary.Endpoint.csproj", "{539C6A87-E72B-4664-8D49-761480E9CBEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.WpfClient", "MyLibrary.WpfClient\MyLibrary.WpfClient.csproj", "{3C27C46D-F9CA-4C31-A2B4-5373CB8F2E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibrary.WpfClient", "MyLibrary.WpfClient\MyLibrary.WpfClient.csproj", "{3C27C46D-F9CA-4C31-A2B4-5373CB8F2E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary.JSClient", "MyLibrary.JSClient\MyLibrary.JSClient.csproj", "{B432A802-C222-46F3-A62A-E98B276423DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3C27C46D-F9CA-4C31-A2B4-5373CB8F2E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C27C46D-F9CA-4C31-A2B4-5373CB8F2E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C27C46D-F9CA-4C31-A2B4-5373CB8F2E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B432A802-C222-46F3-A62A-E98B276423DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B432A802-C222-46F3-A62A-E98B276423DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B432A802-C222-46F3-A62A-E98B276423DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B432A802-C222-46F3-A62A-E98B276423DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
