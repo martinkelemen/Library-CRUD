@@ -22,6 +22,7 @@ namespace MyLibrary.WpfClient
         public BookEditorWindow()
         {
             InitializeComponent();
+            bookwvm.invalidInput += (sender, eventargs) => MessageBox.Show((eventargs as InvalidInputEventArgs).Message, (eventargs as InvalidInputEventArgs).Caption, MessageBoxButton.OK);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

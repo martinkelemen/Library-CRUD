@@ -12,6 +12,18 @@ using System.Windows.Input;
 
 namespace MyLibrary.WpfClient
 {
+    public class InvalidInputEventArgs : EventArgs
+    {
+        public string Message { get; set; }
+
+        public string Caption { get; set; }
+
+        public InvalidInputEventArgs(string message, string caption)
+        {
+            Message = message;
+            Caption = caption;
+        }
+    }
     public class BookEditorWindowViewModel : ObservableRecipient
     {
         private string errorMessage;
@@ -21,6 +33,8 @@ namespace MyLibrary.WpfClient
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
+
+        public event EventHandler invalidInput;
 
         public RestCollection<Book> Books { get; set; }
 
@@ -74,17 +88,24 @@ namespace MyLibrary.WpfClient
                 Books = new RestCollection<Book>("http://localhost:1967/", "book", "hub");
                 CreateBookCommand = new RelayCommand(() =>
                 {
-                    Books.Add(new Book()
+                    if (SelectedBook.PageNumber == 0 || SelectedBook.Year == 0)
                     {
-                        ISBN = SelectedBook.ISBN,
-                        Title = SelectedBook.Title,
-                        AuthorName = SelectedBook.AuthorName,
-                        Year = SelectedBook.Year,
-                        Language = SelectedBook.Language,
-                        Category = SelectedBook.Category,
-                        PageNumber = SelectedBook.PageNumber,
-                        Publisher = SelectedBook.Publisher
-                    });
+                        invalidInput?.Invoke(this, new InvalidInputEventArgs("The page number and the year can be only a number!", "Invalid input"));
+                    }
+                    else
+                    {
+                        Books.Add(new Book()
+                        {
+                            ISBN = SelectedBook.ISBN,
+                            Title = SelectedBook.Title,
+                            AuthorName = SelectedBook.AuthorName,
+                            Year = SelectedBook.Year,
+                            Language = SelectedBook.Language,
+                            Category = SelectedBook.Category,
+                            PageNumber = SelectedBook.PageNumber,
+                            Publisher = SelectedBook.Publisher
+                        });
+                    }
                 });
 
                 DeleteBookCommand = new RelayCommand(() =>

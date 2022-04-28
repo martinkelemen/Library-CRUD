@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Book Editor" Height="650" Width="800">
     <Window.DataContext>
-        <local:BookEditorWindowViewModel />
+        <local:BookEditorWindowViewModel x:Name="bookwvm" />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
